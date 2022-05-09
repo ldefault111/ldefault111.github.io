@@ -23,23 +23,28 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"ldefault111.gitee.io","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.11.0","exturl":false,"sidebar":{"position":"left","width":270,"display":"post","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":true,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.json","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
 
-    <meta property="og:type" content="website">
-<meta property="og:title" content="default111&#39;s blog">
-<meta property="og:url" content="https://ldefault111.gitee.io/categories/%E6%9D%82%E9%A1%B9/index.html">
+    <meta name="description" content="操作系统概念（第9版），第八章内存管理策略。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="OS：内存管理">
+<meta property="og:url" content="https://ldefault111.gitee.io/posts/fddf2b1b/index.html">
 <meta property="og:site_name" content="default111&#39;s blog">
+<meta property="og:description" content="操作系统概念（第9版），第八章内存管理策略。">
 <meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-04-24T06:10:05.000Z">
+<meta property="article:modified_time" content="2022-05-09T07:18:31.516Z">
 <meta property="article:author" content="default111">
+<meta property="article:tag" content="OS">
 <meta name="twitter:card" content="summary">
 
 
-<link rel="canonical" href="https://ldefault111.gitee.io/categories/%E6%9D%82%E9%A1%B9/">
+<link rel="canonical" href="https://ldefault111.gitee.io/posts/fddf2b1b/">
 
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":false,"lang":"zh-CN","comments":"","permalink":"","path":"categories/杂项/index.html","title":""}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://ldefault111.gitee.io/posts/fddf2b1b/","path":"posts/fddf2b1b/","title":"OS：内存管理"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>分类: 杂项 | default111's blog</title>
+<title>OS：内存管理 | default111's blog</title>
   
 
   <script src="/js/third-party/analytics/baidu-analytics.js"></script>
@@ -219,50 +224,175 @@
 </noscript>
 
 
-    <div class="main-inner category posts-collapse">
+    <div class="main-inner post posts-expand">
 
 
   
+
+
+<div class="post-block">
   
   
-  <div class="post-block">
-    <div class="post-content">
-      <div class="collection-title">
-        <h1 class="collection-header">杂项
-          <small>分类</small>
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://ldefault111.gitee.io/posts/fddf2b1b/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="default111">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="default111's blog">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="OS：内存管理 | default111's blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          OS：内存管理
         </h1>
-      </div>
 
-      
-    <div class="collection-year">
-      <span class="collection-header">2022</span>
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2022-04-24 14:10:05" itemprop="dateCreated datePublished" datetime="2022-04-24T14:10:05+08:00">2022-04-24</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2022-05-09 15:18:31" itemprop="dateModified" datetime="2022-05-09T15:18:31+08:00">2022-05-09</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" itemprop="url" rel="index"><span itemprop="name">操作系统</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E6%A6%82%E5%BF%B5%EF%BC%88%E7%AC%AC9%E7%89%88%EF%BC%89%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index"><span itemprop="name">操作系统概念（第9版）笔记</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>632</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>1 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <p>操作系统概念（第9版），第八章内存管理策略。</p>
+<span id="more"></span>
+<p>前置：CPU直接访问内存&amp;寄存器，磁盘中的数据须移到内存&amp;寄存器，供CPU使用。CPU访问内存速度慢，于是在内存和寄存器之间加了高速缓存。</p>
+<p>硬件</p>
+<p>每个进程有单独的内存空间，基地址寄存器和界限地址寄存器限定了进程可以访问的地址为[基地址寄存器值，基地址寄存器值+界限地址寄存器值]。只有操作系统能修改。推广：重定位寄存器</p>
+<p>地址绑定：编译时（绝对代码），加载时（可重定位代码），执行时（硬件）</p>
+<p>CPU看到的地址：逻辑地址，内存单元看到的地址：物理地址</p>
+<p>内存管理单元：完成逻辑地址到物理地址的映射</p>
+<p>动态加载：主程序在内存并执行，调用另一个程序时先检查是否加载，否则重定位链接程序将所需程序加载到内存，更新程序的地址表。</p>
+<p>动态链接库：系统库，库程序的引用有一个存根，用来指出如何加载库到内存。</p>
+<p>交换</p>
+<p>进程在内存与存储之间的交换。备份存储要能够容纳所有内存映像副本，系统维护进程就绪队列，CPU调用分派器检查进程是否在内存中，如果不在且没有空闲内存就换出一个进程再把需要的换进来。</p>
+<p>上下文切换时间长，且需要选择完全空闲的进程</p>
+<p>连续内存分配</p>
+<p>分成固定大小的分区</p>
+<p>可变分区</p>
+<p>动态存储分配问题：首次适应、最优适应、最差适应。</p>
+<p>首次适应和最优适应有外部碎片的问题。解决方法一，紧缩，移动内存内容，但必须是动态重定位，开销也比较大。另一个解决方法是允许不连续逻辑地址。</p>
+<p>非连续：</p>
+<p>分段</p>
+<p>逻辑地址空间由段构成，可指定段号和段偏移量来访问</p>
+<p>段表：段基地址+段界限</p>
+<p>分页</p>
+
     </div>
 
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-      <div class="post-meta-container">
-        <time itemprop="dateCreated"
-              datetime="2022-04-19T20:51:52+08:00"
-              content="2022-04-19">
-          04-19
-        </time>
-      </div>
+    
+    
+    
 
-      <div class="post-title">
-          <a class="post-title-link" href="/posts/addf0f56/" itemprop="url">
-            <span itemprop="name">万恶之源</span>
-          </a>
-      </div>
+    <footer class="post-footer">
+          
 
-      
-    </header>
+<div class="post-copyright">
+<ul>
+  <li class="post-copyright-author">
+      <strong>本文作者： </strong>default111
+  </li>
+  <li class="post-copyright-link">
+      <strong>本文链接：</strong>
+      <a href="https://ldefault111.gitee.io/posts/fddf2b1b/" title="OS：内存管理">https://ldefault111.gitee.io/posts/fddf2b1b/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/OS/" rel="tag"># OS</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/posts/7300585d/" rel="prev" title="OS：同步">
+                  <i class="fa fa-chevron-left"></i> OS：同步
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/posts/f802b88a/" rel="next" title="OS：死锁">
+                  OS：死锁 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
   </article>
+</div>
 
-    </div>
-  </div>
-  
-  
-  
+
+
+
+
 
 </div>
   </main>
