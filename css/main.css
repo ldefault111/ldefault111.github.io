@@ -2941,7 +2941,7 @@ mark.search-keyword {
   }
 }
 body {
-  background: url("/images/background.webp");
+  background: url("/images/background.png");
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-position: center;
@@ -2952,7 +2952,7 @@ body {
   opacity: 0.9;
 }
 .site-brand-container {
-  background: url("/images/a.webp");
+  background: url("/images/a.png");
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-position: center;
