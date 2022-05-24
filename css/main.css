@@ -3088,3 +3088,6 @@ table>tbody>tr:hover {
   color: #8315d3;
   border-bottom-color: #8315d3;
 }
+code {
+  background: #cfcfd1;
+}
