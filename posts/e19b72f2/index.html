@@ -136,7 +136,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%BC%95%E5%85%A5"><span class="nav-number">1.</span> <span class="nav-text"> 引入</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#step1%E5%87%BD%E6%95%B0%E7%A9%BA%E9%97%B4"><span class="nav-number">2.</span> <span class="nav-text"> step1：函数空间</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#step2%E6%89%BE%E6%9C%80%E5%A5%BD%E7%9A%84%E5%87%BD%E6%95%B0"><span class="nav-number">3.</span> <span class="nav-text"> step2：找最好的函数</span></a></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%BC%95%E5%85%A5"><span class="nav-number">1.</span> <span class="nav-text"> 引入</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#step1%E5%87%BD%E6%95%B0%E7%A9%BA%E9%97%B4"><span class="nav-number">2.</span> <span class="nav-text"> step1：函数空间</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#step2%E6%89%BE%E6%9C%80%E5%A5%BD%E7%9A%84%E5%87%BD%E6%95%B0"><span class="nav-number">3.</span> <span class="nav-text"> step2：找最好的函数</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#step3%E6%B1%82%E8%A7%A3%E5%BE%97%E5%88%B0%E5%85%B7%E4%BD%93%E5%87%BD%E6%95%B0"><span class="nav-number">4.</span> <span class="nav-text"> step3：求解得到具体函数</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -151,18 +151,18 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">23</span>
+          <span class="site-state-item-count">27</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
           <a href="/categories/">
-        <span class="site-state-item-count">12</span>
+        <span class="site-state-item-count">14</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">18</span>
+        <span class="site-state-item-count">21</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -255,7 +255,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-07-12 21:18:08" itemprop="dateModified" datetime="2022-07-12T21:18:08+08:00">2022-07-12</time>
+      <time title="修改时间：2022-07-14 23:31:44" itemprop="dateModified" datetime="2022-07-14T23:31:44+08:00">2022-07-14</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -299,7 +299,7 @@
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">本文字数：</span>
-      <span>576</span>
+      <span>712</span>
     </span>
     <span class="post-meta-item" title="阅读时长">
       <span class="post-meta-item-icon">
@@ -334,12 +334,28 @@
 <li>
 <p>函数尽量靠近数据点：逼近，优化问题，最小二乘法，系数的个数选择会有欠拟合/过拟合（利用数据去噪、数据增广、模型简化、正则约束等方法解决）的问题</p>
 </li>
-<li></li>
+</ul>
+</li>
+<li>
+<p>函数分类：</p>
+<ul>
+<li>
+<p>分段线性插值函数：性质不够好，不光滑，不方便数值计算</p>
+</li>
+<li>
+<p>光滑插值函数：容易被噪声带歪</p>
+</li>
+<li>
+<p>逼近拟合函数：误差够小，抵抗一定噪声</p>
+</li>
 </ul>
 </li>
 <li>
 <p>补：正则项</p>
 <ul>
+<li>
+<p>能量项=误差项+正则项（用于限制拟合函数的特点）</p>
+</li>
 <li>
 <p>最小二乘拟合<span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mo><mi>min</mi><mo>⁡</mo></mo><mi>W</mi></msub><mi mathvariant="normal">∥</mi><mi>Y</mi><mo>−</mo><mi>X</mi><mi>W</mi><msup><mi mathvariant="normal">∥</mi><mn>2</mn></msup></mrow><annotation encoding="application/x-tex">\min _{W}\|Y-X W\|^{2}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mop"><span class="mop">min</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.32833099999999993em;"><span style="top:-2.5500000000000003em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight" style="margin-right:0.13889em;">W</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord">∥</span><span class="mord mathdefault" style="margin-right:0.22222em;">Y</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1.064108em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.07847em;">X</span><span class="mord mathdefault" style="margin-right:0.13889em;">W</span><span class="mord"><span class="mord">∥</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span></span></span></span></span></p>
 </li>
@@ -366,6 +382,8 @@
 <p>&amp;\min <em>{\alpha}|Y-X Wy |^{2}, \quad \text { s.t. }|W|</em>{0} \leq \beta<br />
 \end{aligned}<br />
 $$</p>
+<h1 id="step3求解得到具体函数"><a class="markdownIt-Anchor" href="#step3求解得到具体函数"></a> step3：求解得到具体函数</h1>
+<p>找误差函数的驻点，系数列方程组求解，无穷多解时修正模型（改进正则项等）</p>
 
     </div>
 
@@ -462,7 +480,7 @@ $$</p>
       <i class="fa fa-chart-line"></i>
     </span>
       <span>站点总字数：</span>
-    <span title="站点总字数">32k</span>
+    <span title="站点总字数">40k</span>
   </span>
 </div>
 <div class="busuanzi-count">
