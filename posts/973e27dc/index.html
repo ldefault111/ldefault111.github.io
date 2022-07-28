@@ -255,7 +255,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-07-28 23:47:22" itemprop="dateModified" datetime="2022-07-28T23:47:22+08:00">2022-07-28</time>
+      <time title="修改时间：2022-07-28 23:58:06" itemprop="dateModified" datetime="2022-07-28T23:58:06+08:00">2022-07-28</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -295,7 +295,7 @@
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">本文字数：</span>
-      <span>2.4k</span>
+      <span>2.3k</span>
     </span>
     <span class="post-meta-item" title="阅读时长">
       <span class="post-meta-item-icon">
@@ -316,7 +316,7 @@
         <p>Windows Subsystem for Linux，简称WSL，是微软提供的可以运行在windows系统的“虚拟机”，可以让我们摆脱笨重的VMWare</p>
 <span id="more"></span>
 <h1 id="什么是wsl"><a class="markdownIt-Anchor" href="#什么是wsl"></a> 什么是WSL</h1>
-<p>[官方文档](<a target="_blank" rel="noopener" href="https://docs.microsoft.com/zh-cn/windows/wsl/">适用于 Linux 的 Windows 子系统文档 | Microsoft Docs</a>)：WSl是适用于 Linux 的 Windows 子系统，可让开发人员按原样运行 GNU/Linux 环境，包括大多数命令行工具、实用工具和应用程序</p>
+<p><a target="_blank" rel="noopener" href="https://docs.microsoft.com/zh-cn/windows/wsl/">官方文档</a>：WSl是适用于 Linux 的 Windows 子系统，可让开发人员按原样运行 GNU/Linux 环境，包括大多数命令行工具、实用工具和应用程序</p>
 <p>WSL占用较少的资源且提供基本同样的体验，可以对windows文件系统的文件直接读写（VMWare需要借助工具），剪贴板也是公用的。</p>
 <h1 id="启动与安装"><a class="markdownIt-Anchor" href="#启动与安装"></a> 启动与安装</h1>
 <h2 id="激活wsl"><a class="markdownIt-Anchor" href="#激活wsl"></a> 激活WSL</h2>
@@ -325,12 +325,13 @@
 <p>之后重启电脑，WSL就成功激活了</p>
 <h2 id="安装发行版操作系统"><a class="markdownIt-Anchor" href="#安装发行版操作系统"></a> 安装发行版操作系统</h2>
 <p>打开Microsoft Store，查找想要的操作系统，比如搜索Ubuntu，如下图：</p>
+<img data-src="/posts/973e27dc/1.jpg" class title="这1">
 <p><img data-src="D:%5Ccoding%5Cblog%5Csource_posts%5CWSL%E6%BF%80%E6%B4%BB%E5%AE%89%E8%A3%85%E4%B8%8E%E8%BF%81%E7%A7%BB%E7%9B%98%E6%93%8D%E4%BD%9C%5C1.jpg" alt></p>
 <p>选择自己想要的发行版操作系统安装，安装后打开，依提示设置用户名、密码即可开始使用</p>
 <h2 id="换源"><a class="markdownIt-Anchor" href="#换源"></a> 换源</h2>
 <p>官方软件源有时访问很慢，我们更换成清华源，依次执行以下命令（备份原本的安装源、编辑新的安装源）：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo <span class="built_in">cp</span> /etc/apt/sources.list /etc/apt/sources.list.bak </span><br><span class="line">sudo vim /etc/apt/sources.list</span><br></pre></td></tr></table></figure>
-<p>在打开的vim编辑器里，将内容清空（可以在指令模式下输入<code>:%d</code>快速清空），以<strong>Ubuntu 20.04.4 LTS</strong>为例（其他版本在[清华源官网](<a target="_blank" rel="noopener" href="https://mirror.tuna.tsinghua.edu.cn/help/ubuntu/">ubuntu | 镜像站使用帮助 | 清华大学开源软件镜像站 | Tsinghua Open Source Mirror</a>)可查，输入以下内容（wsl的好处已经体现了，剪贴板互通可以直接复制）</p>
+<p>在打开的vim编辑器里，将内容清空（可以在指令模式下输入<code>:%d</code>快速清空），以<strong>Ubuntu 20.04.4 LTS</strong>为例（其他版本在<a target="_blank" rel="noopener" href="https://mirror.tuna.tsinghua.edu.cn/help/ubuntu/">清华源官网</a>可查，输入以下内容（wsl的好处已经体现了，剪贴板互通可以直接复制）</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"># 默认注释了源码镜像以提高 apt update 速度，如有需要可自行取消注释</span><br><span class="line">deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ jammy main restricted universe multiverse</span><br><span class="line"># deb-src https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ jammy main restricted universe multiverse</span><br><span class="line">deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ jammy-updates main restricted universe multiverse</span><br><span class="line"># deb-src https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ jammy-updates main restricted universe multiverse</span><br><span class="line">deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ jammy-backports main restricted universe multiverse</span><br><span class="line"># deb-src https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ jammy-backports main restricted universe multiverse</span><br><span class="line">deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ jammy-security main restricted universe multiverse</span><br><span class="line"># deb-src https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ jammy-security main restricted universe multiverse</span><br><span class="line"></span><br><span class="line"># 预发布软件源，不建议启用</span><br><span class="line"># deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ jammy-proposed main restricted universe multiverse</span><br><span class="line"># deb-src https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ jammy-proposed main restricted universe multiverse</span><br></pre></td></tr></table></figure>
 <h2 id="更新"><a class="markdownIt-Anchor" href="#更新"></a> 更新</h2>
 <p>依次输入以下代码进行软件更新：</p>
