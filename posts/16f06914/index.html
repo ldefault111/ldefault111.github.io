@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 6.3.0">
+
+<link rel="preconnect" href="https://lib.baomitu.com" crossorigin>
+<link rel="preconnect" href="lib.baomitu.com" crossorigin>
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+  <meta name="msvalidate.01" content="4DE41AB378B03D751B278232D142074A">
+  <meta name="baidu-site-verification" content="code-BIpyo98GuV">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="https://lib.baomitu.com/css?family=consolas:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+
+<link rel="stylesheet" href="https://lib.baomitu.com/font-awesome/6.1.1/css/all.min.css" integrity="sha256-DfWjNxDkM94fVBWx1H5BMMp0Zq7luBlV8QRcSES7s+0=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://lib.baomitu.com/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"lyroch.site","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.11.0","exturl":false,"sidebar":{"position":"left","width":210,"display":"post","padding":18,"offset":30},"copycode":true,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":true,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":true,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.json","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+
+
+
+<link rel="canonical" href="https://lyroch.site/posts/16f06914/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://lyroch.site/posts/16f06914/","path":"posts/16f06914/","title":"【MIT 6.S081】Lab3: Page Tables"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>【MIT 6.S081】Lab3: Page Tables | default111</title>
+  
+
+  <script src="/js/third-party/analytics/baidu-analytics.js"></script>
+  <script async src="https://hm.baidu.com/hm.js?4153420f060a95b406405cc219f4ce4d"></script>
+
+
+
+<link rel="dns-prefetch" href="waline-server-kojdsmmqy-ldefault111.vercel.app">
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">default111</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-主页"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>主页</a></li><li class="menu-item menu-item-关于"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-标签"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-分类"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li><li class="menu-item menu-item-归档"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li><li class="menu-item menu-item-电影"><a href="/movies/" rel="section"><i class="fa fa-film fa-fw"></i>电影</a></li><li class="menu-item menu-item-读书"><a href="/books/" rel="section"><i class="fa fa-book fa-fw"></i>读书</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Speed-up-system-calls-easy"><span class="nav-number">1.</span> <span class="nav-text">Speed up system calls (easy)</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%A6%81%E6%B1%82"><span class="nav-number">1.1.</span> <span class="nav-text">要求</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%86%E6%9E%90"><span class="nav-number">1.2.</span> <span class="nav-text">分析</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%9E%E7%8E%B0"><span class="nav-number">1.3.</span> <span class="nav-text">实现</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B5%8B%E8%AF%95"><span class="nav-number">1.4.</span> <span class="nav-text">测试</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Print-a-page-table-easy"><span class="nav-number">2.</span> <span class="nav-text">Print a page table (easy)</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%A6%81%E6%B1%82-1"><span class="nav-number">2.1.</span> <span class="nav-text">要求</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%86%E6%9E%90-1"><span class="nav-number">2.2.</span> <span class="nav-text">分析</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%9E%E7%8E%B0-1"><span class="nav-number">2.3.</span> <span class="nav-text">实现</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B5%8B%E8%AF%95-1"><span class="nav-number">2.4.</span> <span class="nav-text">测试</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Detecting-which-pages-have-been-accessed-hard"><span class="nav-number">3.</span> <span class="nav-text">Detecting which pages have been accessed (hard)</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%A6%81%E6%B1%82-2"><span class="nav-number">3.1.</span> <span class="nav-text">要求</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%86%E6%9E%90-2"><span class="nav-number">3.2.</span> <span class="nav-text">分析</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%9E%E7%8E%B0-2"><span class="nav-number">3.3.</span> <span class="nav-text">实现</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B5%8B%E8%AF%95-2"><span class="nav-number">3.4.</span> <span class="nav-text">测试</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="default111"
+      src="/images/avatar.png">
+  <p class="site-author-name" itemprop="name">default111</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">42</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">17</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">25</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/ldefault111" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;ldefault111" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://blog.csdn.net/default012?spm=1010.2135.3001.5421" title="CSDN → https:&#x2F;&#x2F;blog.csdn.net&#x2F;default012?spm&#x3D;1010.2135.3001.5421" rel="noopener" target="_blank"><i class="fa fa-book fa-fw"></i>CSDN</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://codeforces.com/profile/default111" title="Codeforces → https:&#x2F;&#x2F;codeforces.com&#x2F;profile&#x2F;default111" rel="noopener" target="_blank"><i class="fa fa-bar-chart fa-fw"></i>Codeforces</a>
+      </span>
+  </div>
+  <div class="cc-license site-overview-item animated" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="https://lib.baomitu.com/creativecommons-vocabulary/2020.11.3/assets/license_badges/small/by_nc_sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+  <div class="links-of-blogroll site-overview-item animated">
+    <div class="links-of-blogroll-title"><i class="fa fa-globe fa-fw"></i>
+      友情链接
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="https://blog.csdn.net/default012?spm=1010.2135.3001.5421" title="https:&#x2F;&#x2F;blog.csdn.net&#x2F;default012?spm&#x3D;1010.2135.3001.5421" rel="noopener" target="_blank">default111（测试）</a>
+        </li>
+    </ul>
+  </div>
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+  <a href="https://github.com/ldefault111" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://lyroch.site/posts/16f06914/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="default111">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="default111">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="【MIT 6.S081】Lab3: Page Tables | default111">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          【MIT 6.S081】Lab3: Page Tables
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2022-08-13 00:10:28" itemprop="dateModified" datetime="2022-08-13T00:10:28+08:00">2022-08-13</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" itemprop="url" rel="index"><span itemprop="name">操作系统</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+  
+  <span class="post-meta-item">
+    
+    <span class="post-meta-item-icon">
+      <i class="far fa-comment"></i>
+    </span>
+    <span class="post-meta-item-text">Waline：</span>
+  
+    <a title="waline" href="/posts/16f06914/#waline" itemprop="discussionUrl">
+      <span class="post-comments-count waline-comment-count" data-path="/posts/16f06914/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>5.7k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>5 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <p>MIT 6.S081的<a target="_blank" rel="noopener" href="https://pdos.csail.mit.edu/6.828/2021/labs/syscall.html">Lab3: Page Tables</a>题解</p>
+<span id="more"></span>
+
+<h1 id="Speed-up-system-calls-easy"><a href="#Speed-up-system-calls-easy" class="headerlink" title="Speed up system calls (easy)"></a>Speed up system calls (easy)</h1><h2 id="要求"><a href="#要求" class="headerlink" title="要求"></a>要求</h2><p>操作系统如Linux通过在用户空间和内核之间共享只读区域中的数据来加速某些系统调用，实现系统调用<code>getpid()</code>的优化。</p>
+<h2 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h2><ul>
+<li><p>说明：创建每个进程时映射一个只读页面到虚拟地址<code>USYSCALL</code>（在 <code>memlayout.h</code> 中定义），页面开头存储<code>struct ussyscall</code>（也在<code>memlayout.h</code>中定义），并初始化它以存储当前进程的 PID，用户空间已有<code>ugetpid()</code> ，使用USYSCALL 映射</p>
+</li>
+<li><p>先看<code>ugetpid()</code>，将宏定义的<code>USYSCALL</code>所指内容强制转换成<code>usyscall</code>类型的指针从而找到进程号，就是找了共享的数据</p>
+</li>
+<li><p>提示要在<code>kernel/proc.c</code>中的<code>proc_pagetable()</code>函数中完成映射，可以看到这个函数返回了一个分配的页表，过程用到了提示中也给到的<code>mappages</code>做其他东西的映射，所以要用类似的形式写一个映射USYSCALL，看一下这些形式用的函数都是什么意思：</p>
+<ul>
+<li><p><code>int mappages(pagetable_t pagetable, uint64 va, uint64 size, uint64 pa, int perm)</code>：为从<code>va</code>开始的虚拟地址（这题就是USYSCALL了）创建PTE，指向<code>pa</code>开始的物理地址（这里要在proc结构体里多安排一个指针指向实际内容，也就是前面的<code>usyscall</code>指针）；va和size可能不是页面对齐的（这个不知道有啥用）；成功时返回 $0$，如果<code>walk()</code>不能分配所需的页表返回 $-1$；<code>perm</code>是选用在<code>kernel/riscv.h</code>中的参数（也是PTE的属性，RW跟是读写权限），根据提示这里为了普通用户只读应使用<code>PTE_R | PTE_U</code></p>
+</li>
+<li><p><code>uvmunmap(pagetable_t pagetable, uint64 va, uint64 npages, int do_free)</code>：删除从<code>va</code>开始的映射的<code>npages</code>，<code>va</code>必须是页面对齐的。映射必须存在，是可以选择性的释放内存</p>
+</li>
+<li><p><code>uvmfree(pagetable_t pagetable, uint64 sz)</code>：释放用户内存页，然后释放页-表页</p>
+</li>
+<li><p>这题如果映射失败，需要把之前两个映射成功的全部释放，再释放用户内存页，因为在上述<code>uvmfree()</code>函数中调用了一个<code>freewalk()</code>的函数，要求必须已经删除所有叶子映射</p>
+</li>
+<li><p>提示要在<code>kernel/proc.c</code>中的<code>allocproc()</code>函数里初始化上面映射的内容，这个函数中看到了给熟悉的trapframe分配页表的判定，所以模仿着写一个对usyscall分配页表的判定；初始化那就是将这个指针指向的内容<code>pid</code>赋值为这个函数前段已经获得了的<code>pid</code>值</p>
+</li>
+</ul>
+</li>
+<li><p>提示在<code>kernel/proc.c</code>中的<code>freeproc()</code>函数中释放页面：模仿trapframe的写法即可，查了一下释放trapframe指针后面的函数<code>proc_freepagetable()</code>函数，用<code>uvmunmap</code>解除了上面分配的<code>TRAMPOLINE</code>和<code>TRAPFRAME</code>后释放页，根据上面已经查过的需要删除所有叶子映射，这里的<code>proc_freepagetable()</code>函数也需要改动</p>
+</li>
+</ul>
+<h2 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h2><p>注意：在写的过程中会出现<code>USYSCALL</code>报错和<code>struct usyscall *</code>在使用时报错，而<code>kernel/memlayout.h</code>中是用了<code>ifdef LAB_PGTBL</code>，所以不用管，跑起来不会报错</p>
+<p>在<code>kernel/proc.c</code>中的<code>proc_pagetable()</code>函数中补充：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// map USYSCALL</span></span><br><span class="line"><span class="keyword">if</span> (mappages(pagetable, USYSCALL, PGSIZE,</span><br><span class="line">        (uint64)(p-&gt;ucall), PTE_R | PTE_U) &lt; <span class="number">0</span>) &#123;</span><br><span class="line">    uvmunmap(pagetable, TRAMPOLINE, <span class="number">1</span>, <span class="number">0</span>);</span><br><span class="line">    uvmunmap(pagetable, TRAPFRAME, <span class="number">1</span>, <span class="number">0</span>);</span><br><span class="line">    uvmfree(pagetable, <span class="number">0</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>在<code>kernel/proc.h</code>中补充：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Per-process state</span></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">proc</span> &#123;</span></span><br><span class="line">...</span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">usyscall</span> *<span class="title">ucall</span>;</span>      <span class="comment">// for USYSCALL</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>在<code>kernel/proc.c</code>中的<code>allocproc()</code>函数中补充：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Allocate a usyscall page.</span></span><br><span class="line"><span class="keyword">if</span> ((p-&gt;ucall = (<span class="keyword">struct</span> usyscall*)kalloc()) == <span class="number">0</span>) &#123;</span><br><span class="line">    freeproc(p);</span><br><span class="line">    release(&amp;p-&gt;lock);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line">...</span><br><span class="line">p-&gt;ucall-&gt;pid = p-&gt;pid; <span class="comment">// init usyscall</span></span><br><span class="line"><span class="keyword">return</span> <span class="number">0</span>;</span><br></pre></td></tr></table></figure>
+
+<p>在<code>kernel/proc.c</code>中的<code>freeproc()</code>函数中补充：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span>(p-&gt;ucall)</span><br><span class="line">    kfree((<span class="type">void</span>*)p-&gt;ucall);</span><br><span class="line">p-&gt;ucall = <span class="number">0</span>;</span><br><span class="line"><span class="comment">// before proc_freepgetable()</span></span><br></pre></td></tr></table></figure>
+
+<p>在<code>kernel/proc.c</code>中的<code>proc_freepagetable()</code>函数中补充：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">uvmunmap(pagetable, USYSCALL, <span class="number">1</span>, <span class="number">0</span>);</span><br></pre></td></tr></table></figure>
+
+<h2 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h2><p>输入命令：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo python3 grade-lab-pgtbl ugetpid</span><br></pre></td></tr></table></figure>
+
+<p><img data-src="/posts/16f06914/1.jpg" title="1"></p>
+<h1 id="Print-a-page-table-easy"><a href="#Print-a-page-table-easy" class="headerlink" title="Print a page table (easy)"></a>Print a page table (easy)</h1><h2 id="要求-1"><a href="#要求-1" class="headerlink" title="要求"></a>要求</h2><p>写一个函数打印页表内容，参数是一个<code>pagetable_t</code>，在<code>exec.c</code>的<code>return argc</code>前添加代码<code>if(p-&gt;pid==1) vmprint(p-&gt;pagetable)</code>，打印格式：第一行<code>page table 参数</code>，之后每行一个PTE，以<code>..</code>表示树中的深度”，后面依次打印PTE 索引、PTE 位和 PTE 中提取的物理地址</p>
+<h2 id="分析-1"><a href="#分析-1" class="headerlink" title="分析"></a>分析</h2><ul>
+<li><p><code>vmprint()</code>写在<code>vm.c</code>中，函数要在<code>defs.h</code>声明</p>
+</li>
+<li><p>上一个题有查到<code>kernel/vm.c</code>中的<code>freewalk()</code>函数是递归释放页表的，提示中也提到了这个函数，用递归的方式释放所有的叶子，把释放改成打印信息即可</p>
+</li>
+<li><p>提示在<code>printf</code>里用<code>%p</code>打印十六进制PTE</p>
+</li>
+</ul>
+<h2 id="实现-1"><a href="#实现-1" class="headerlink" title="实现"></a>实现</h2><p>在<code>kernel/exec.c</code>中<code>return argc</code>之前添加：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// print pagetable</span></span><br><span class="line"><span class="keyword">if</span>(p-&gt;pid == <span class="number">1</span>)</span><br><span class="line">    vmprint(p-&gt;pagetable);</span><br></pre></td></tr></table></figure>
+
+<p>在<code>kernel/defs.h</code>中添加：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// vm.c</span></span><br><span class="line"><span class="type">void</span>            <span class="title function_">vmprint</span><span class="params">(<span class="type">pagetable_t</span>)</span>;</span><br></pre></td></tr></table></figure>
+
+<p>在<code>kernel/vm.c</code>中添加两个函数，其中<code>vmprint_help()</code>是用于递归打印的函数，<code>vmprint()</code>用于打印第一行和开启递归（主要是需要打印一个单独的第一行，递归改迭代太麻烦，单独写一个函数用于递归了）：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">void</span> <span class="title function_">vmprint_help</span><span class="params">(<span class="type">pagetable_t</span> pagetable, <span class="type">int</span> depth)</span> &#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; <span class="number">512</span>; i++) &#123;</span><br><span class="line">        <span class="type">pte_t</span> pte = pagetable[i];</span><br><span class="line">        <span class="keyword">if</span> ((pte &amp; PTE_V) &amp;&amp; depth &lt;= <span class="number">3</span>) &#123; <span class="comment">// valid pte</span></span><br><span class="line">            uint64 child = PTE2PA(pte);</span><br><span class="line">            <span class="built_in">printf</span>(<span class="string">&quot;..&quot;</span>);</span><br><span class="line">            <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; depth - <span class="number">1</span>; i++)</span><br><span class="line">                <span class="built_in">printf</span>(<span class="string">&quot; ..&quot;</span>);</span><br><span class="line">            <span class="built_in">printf</span>(<span class="string">&quot;%d: pte %p pa %p\n&quot;</span>, i, pte, child);</span><br><span class="line">            vmprint_help((<span class="type">pagetable_t</span>)child, depth + <span class="number">1</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="type">void</span> <span class="title function_">vmprint</span><span class="params">(<span class="type">pagetable_t</span> pagetable)</span> &#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;page table %p\n&quot;</span>, pagetable);</span><br><span class="line">    vmprint_help(pagetable, <span class="number">1</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="测试-1"><a href="#测试-1" class="headerlink" title="测试"></a>测试</h2><p>输入命令：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo python3 grade-lab-pgtbl pte printout</span><br></pre></td></tr></table></figure>
+
+<p><img data-src="/posts/16f06914/2.jpg" title="2"></p>
+<h1 id="Detecting-which-pages-have-been-accessed-hard"><a href="#Detecting-which-pages-have-been-accessed-hard" class="headerlink" title="Detecting which pages have been accessed (hard)"></a>Detecting which pages have been accessed (hard)</h1><h2 id="要求-2"><a href="#要求-2" class="headerlink" title="要求"></a>要求</h2><p>实现<code>pgaccess()</code>的系统调用，报告哪些页面已被访问。检查 RISC-V 页表中的访问位来检测并向用户空间报告此信息，RISC-V 硬件page walker在解决一个 TLB 未命中时会在 PTE 中标记这些位。这个系统调用有三个参数，第一个参数是第一个用户页的虚拟地址，第二个参数是页数，第三个参数是一个指针传递结果（第一页对应LSB，后面依次）</p>
+<h2 id="分析-2"><a href="#分析-2" class="headerlink" title="分析"></a>分析</h2><ul>
+<li>在<code>kernel/sysproc.c</code>中实现<code>sys_pgaccess()</code>：需要用到Lab2中介绍过的解析参数的函数<code>argint()</code>和<code>argaddr()</code>；内核传给用户信息需要Lab2中介绍过的<code>copyout()</code>函数；<code>walk()</code>函数对于找PTE很有用<ul>
+<li><code>int argint(int n, int *p)</code>获取第<code>n</code>个寄存器的值，将指针p指向它的值，<code>argaddr(int n, uint64 *ip)</code>拿的是指针</li>
+<li><code>copyout(pagetable_t pagetable, uint64 dstva, char *src, uint64 len)</code>：从内核拷贝内容到用户层，从<code>src</code>拷贝<code>len</code>字节到虚拟地址<code>dstva</code>在页表<code>pagetable</code>指向的位置，成功返回 $0$ ，否则返回 $-1$</li>
+<li><code>pte_t * walk(pagetable_t pagetable, uint64 va, int alloc)</code> ：返回对应虚拟地址<code>va</code>的PTE的地址，如果<code>alloc</code>不为 $0$ 则创建所需的页。大致过程是找到合法的最顶层pte（与上一个题目中的<code>freewalk()</code>是反着的），我们可以利用这个找到每一页的pte</li>
+</ul>
+</li>
+<li>在系统调用函数的实现中，首先从寄存器把三个参数拿到，接着调用一个工具函数得到结果，最后使用<code>copyout()</code>拷贝结果给用户层</li>
+<li>工具函数主要是完成答案的收集，从指定页开始的 $n$ 个页，每一页利用<code>walk()</code>函数找到顶层PTE，检查<code>PTE_A</code>并更新答案</li>
+<li>在<code>pgaccess_test()</code>里可以查到调用时的三个参数为<code>char *</code>，整数，<code>uint *</code></li>
+</ul>
+<h2 id="实现-2"><a href="#实现-2" class="headerlink" title="实现"></a>实现</h2><p>在<code>kernel/risc.h</code>中添加<code>PTE_A</code>的定义：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// access bit </span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> PTE_A (1L &lt;&lt; 6)</span></span><br></pre></td></tr></table></figure>
+
+<p>在<code>kernel/sysproc.c</code>中补充<code>sys_pgaccess()</code>函数：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> <span class="title function_">sys_pgaccess</span><span class="params">(<span class="type">void</span>)</span> &#123;</span><br><span class="line">    uint64 addr, bits;</span><br><span class="line">    <span class="type">int</span> npages;</span><br><span class="line">    <span class="keyword">if</span> (argaddr(<span class="number">0</span>, &amp;addr) &lt; <span class="number">0</span> || argint(<span class="number">1</span>, &amp;npages) &lt; <span class="number">0</span> || argaddr(<span class="number">2</span>, &amp;bits) &lt; <span class="number">0</span>)</span><br><span class="line">        <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">proc</span>* <span class="title">p</span> =</span> myproc();</span><br><span class="line">    uint64 res = check_pgaccess(p-&gt;pagetable, addr, npages);</span><br><span class="line">    <span class="keyword">if</span> (copyout(p-&gt;pagetable, bits, (<span class="type">char</span>*)&amp;res, <span class="keyword">sizeof</span>(res)) &lt; <span class="number">0</span>)</span><br><span class="line">        <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>在<code>kernel/vm.c</code>中添加在上面函数中用到的检查访问位的工具函数：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// check PTE_A</span></span><br><span class="line">uint64</span><br><span class="line"><span class="title function_">check_pgaccess</span><span class="params">(<span class="type">pagetable_t</span> pagetable, uint64 va, <span class="type">int</span> npages)</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> (va &gt;= MAXVA)</span><br><span class="line">        panic(<span class="string">&quot;walk&quot;</span>);</span><br><span class="line">    uint64 res = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; npages; i++) &#123; <span class="comment">// check each page</span></span><br><span class="line">        <span class="type">pte_t</span>* pte = walk(pagetable, va + i * PGSIZE, <span class="number">0</span>);</span><br><span class="line">        <span class="keyword">if</span> (pte &amp;&amp; (*pte &amp; PTE_A)) &#123; <span class="comment">// access</span></span><br><span class="line">            res |= (<span class="number">1L</span> &lt;&lt; i);</span><br><span class="line">            *pte &amp;= ~PTE_A; <span class="comment">// 111...0111... reset *pte</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> res;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="测试-2"><a href="#测试-2" class="headerlink" title="测试"></a>测试</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo python3 grade-lab-pgtbl pgtbltest</span><br></pre></td></tr></table></figure>
+
+<p><img data-src="/posts/16f06914/3.jpg" title="3"></p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer"><div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px; padding-top: 10px;">--------------------------------------- <i class="fa fa-heart"></i> The End <i class="fa fa-heart"></i> ---------------------------------------  </div>
+    
+</div>
+
+          <div class="reward-container">
+  <div>如果文章对你不错，可以给博主加个鸡腿，感谢鼓励！</div>
+  <button>
+    赞赏
+  </button>
+  <div class="post-reward">
+      <div>
+        <img src="/images/wechatpay.png" alt="default111 微信">
+        <span>微信</span>
+      </div>
+
+  </div>
+</div>
+
+          
+
+<div class="post-copyright">
+<ul>
+  <li class="post-copyright-author">
+      <strong>本文作者： </strong>default111
+  </li>
+  <li class="post-copyright-link">
+      <strong>本文链接：</strong>
+      <a href="https://lyroch.site/posts/16f06914/" title="【MIT 6.S081】Lab3: Page Tables">https://lyroch.site/posts/16f06914/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/OS/" rel="tag"><i class="fa fa-tag"></i> OS</a>
+              <a href="/tags/MIT-6-S081/" rel="tag"><i class="fa fa-tag"></i> MIT 6.S081</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/posts/1aaeae90/" rel="prev" title="【MIT 6.S081】Lab2: System Calls">
+                  <i class="fa fa-chevron-left"></i> 【MIT 6.S081】Lab2: System Calls
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/posts/de99bdbe/" rel="next" title="【题解】Codeforces Round">
+                  【题解】Codeforces Round <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    <div class="comments" id="waline"></div>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-star"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">default111</span>
+</div>
+<div class="wordcount">
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-line"></i>
+    </span>
+      <span>站点总字数：</span>
+    <span title="站点总字数">91k</span>
+  </span>
+</div>
+<div class="busuanzi-count">
+</div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://lib.baomitu.com/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+  <script src="https://lib.baomitu.com/lozad.js/1.16.0/lozad.min.js" integrity="sha256-mOFREFhqmHeQbXpK2lp4nA3qooVgACfh88fpJftLBbc=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  
+<script src="https://lib.baomitu.com/hexo-generator-searchdb/1.4.0/search.js" integrity="sha256-vXZMYLEqsROAXkEw93GGIvaB2ab+QW6w3+1ahD9nXXA=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+  <script class="next-config" data-name="mermaid" type="application/json">{"enable":true,"theme":{"light":"default","dark":"dark"},"js":{"url":"https://lib.baomitu.com/mermaid/8.14.0/mermaid.min.js","integrity":"sha256-7wT34TI0pEBeEFoi4z+vhuSddGh6vUTMWdqJ2SDe2jg="}}</script>
+  <script src="/js/third-party/tags/mermaid.js"></script>
+
+
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">false</script><link rel="stylesheet" href="https://lib.baomitu.com/KaTeX/0.15.3/katex.min.css" integrity="sha256-TThEtR+XalhWKkfF383YLOrI50NGNeIqrzS+q08afrY=" crossorigin="anonymous">
+
+
+<script class="next-config" data-name="waline" type="application/json">{"lang":"zh-cn","enable":true,"serverURL":"waline-server-kojdsmmqy-ldefault111.vercel.app","cssUrl":"https://unpkg.com/@waline/client@v2/dist/waline.css","commentCount":true,"pageview":false,"placeholder":"文明发言，友好交流~","avatar":"mm","meta":["nick","mail","link"],"pageSize":10,"visitor":false,"comment_count":true,"requiredFields":[],"libUrl":"//unpkg.com/@waline/client@v2/dist/waline.js","el":"#waline","comment":true,"path":"/posts/16f06914/"}</script>
+<link rel="stylesheet" href="https://unpkg.com/@waline/client@v2/dist/waline.css">
+<script>
+document.addEventListener('page:loaded', () => {
+  NexT.utils.loadComments(CONFIG.waline.el).then(() =>
+    NexT.utils.getScript(CONFIG.waline.libUrl, { condition: window.Waline })
+  ).then(() => 
+    Waline.init(Object.assign({}, CONFIG.waline,{ el: document.querySelector(CONFIG.waline.el) }))
+  );
+});
+</script>
+
+</body>
+</html>
+<script type="text/javascript" src="/js/clicklove.js"></script>
