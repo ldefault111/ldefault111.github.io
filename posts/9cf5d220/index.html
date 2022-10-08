@@ -136,7 +136,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%AE%89%E8%A3%85%E6%8F%92%E4%BB%B6"><span class="nav-number">1.</span> <span class="nav-text">安装插件</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%B7%BB%E5%8A%A0%E8%BF%9E%E6%8E%A5"><span class="nav-number">2.</span> <span class="nav-text">添加连接</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%AE%89%E5%85%A8%E7%BB%84%E8%AE%BE%E7%BD%AE"><span class="nav-number">3.</span> <span class="nav-text">安全组设置</span></a></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%AE%89%E8%A3%85%E6%8F%92%E4%BB%B6"><span class="nav-number">1.</span> <span class="nav-text">安装插件</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%B7%BB%E5%8A%A0%E8%BF%9E%E6%8E%A5"><span class="nav-number">2.</span> <span class="nav-text">添加连接</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%AE%89%E5%85%A8%E7%BB%84%E8%AE%BE%E7%BD%AE"><span class="nav-number">3.</span> <span class="nav-text">安全组设置</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%9B%B4%E6%8D%A2%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E8%BF%9E%E6%8E%A5%E6%B3%A8%E6%84%8F"><span class="nav-number">4.</span> <span class="nav-text">更换操作系统连接注意</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -255,7 +255,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-10-08 15:37:51" itemprop="dateModified" datetime="2022-10-08T15:37:51+08:00">2022-10-08</time>
+      <time title="修改时间：2022-10-08 22:56:04" itemprop="dateModified" datetime="2022-10-08T22:56:04+08:00">2022-10-08</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -295,7 +295,7 @@
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">本文字数：</span>
-      <span>281</span>
+      <span>387</span>
     </span>
     <span class="post-meta-item" title="阅读时长">
       <span class="post-meta-item-icon">
@@ -313,28 +313,30 @@
     
     
     <div class="post-body" itemprop="articleBody">
-        <p>利用VSCode插件远程连接阿里云ECS，CentOS 8系统</p>
+        <p>利用VSCode插件远程连接阿里云ECS</p>
 <span id="more"></span>
 <h1 id="安装插件">安装插件</h1>
 <p>在VSCode侧边栏扩展(Ctrl+Shift+X)搜搜索并下载安装Remote-SSH插件：</p>
-<img data-src="/posts/undefined/image-20221008152232639.png" class="" title="image-20221008152232639">
+<img data-src="/posts/9cf5d220/image-20221008152232639.png" class="" title="image-20221008152232639">
 <h1 id="添加连接">添加连接</h1>
 <p>在侧边栏远程资源管理器选择SSH Targets，点击+号添加新的连接（随意命名，我命名为aliyun）</p>
-<img data-src="/posts/undefined/image-20221008152711231.png" class="" title="image-20221008152711231">
+<img data-src="/posts/9cf5d220/image-20221008152711231.png" class="" title="image-20221008152711231">
 <p>在阿里云控制台找到ECS的公网IP，复制后，点击下图中前两个任意一个都可以，进行配置：</p>
-<img data-src="/posts/undefined/image-20221008152937610.png" class="" title="image-20221008152937610">
+<img data-src="/posts/9cf5d220/image-20221008152937610.png" class="" title="image-20221008152937610">
 <p>在HostName后粘贴公网IP</p>
-<img data-src="/posts/undefined/image-20221008153048601.png" class="" title="image-20221008153048601">
+<img data-src="/posts/9cf5d220/image-20221008153048601.png" class="" title="image-20221008153048601">
 <h1 id="安全组设置">安全组设置</h1>
 <p>在阿里云控制台-网络与安全-安全组</p>
-<img data-src="/posts/undefined/image-20221008153514244.png" class="" title="image-20221008153514244">
+<img data-src="/posts/9cf5d220/image-20221008153514244.png" class="" title="image-20221008153514244">
 <p>选择最右侧操作一栏中的配置规则</p>
-<img data-src="/posts/undefined/image-20221008153602716.png" class="" title="image-20221008153602716">
+<img data-src="/posts/9cf5d220/image-20221008153602716.png" class="" title="image-20221008153602716">
 <p>点击快速添加</p>
-<img data-src="/posts/undefined/image-20221008153629828.png" class="" title="image-20221008153629828">
+<img data-src="/posts/9cf5d220/image-20221008153629828.png" class="" title="image-20221008153629828">
 <p>勾选SSH并确认</p>
-<img data-src="/posts/undefined/image-20221008153654861.png" class="" title="image-20221008153654861">
+<img data-src="/posts/9cf5d220/image-20221008153654861.png" class="" title="image-20221008153654861">
 <p>应该就可以连接成功了，除非你的密码不记得了，可以去阿里云控制台重置密码</p>
+<h1 id="更换操作系统连接注意">更换操作系统连接注意</h1>
+<p>如果重新远程连接，ip地址没换会出现连接错误，是因为RemoteSSH连接ip会记录公钥，在<code>C:/Users/xxx/.ssh/known_hosts</code>里，需要手动将里面你服务器ip对应的内容删掉，就可以重新连接了</p>
 
     </div>
 
@@ -425,7 +427,7 @@
       <i class="fa fa-chart-line"></i>
     </span>
       <span>站点总字数：</span>
-    <span title="站点总字数">96k</span>
+    <span title="站点总字数">97k</span>
   </span>
 </div>
 <div class="busuanzi-count">
