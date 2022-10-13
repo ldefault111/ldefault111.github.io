@@ -295,7 +295,7 @@
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">本文字数：</span>
-      <span>550</span>
+      <span>538</span>
     </span>
     <span class="post-meta-item" title="阅读时长">
       <span class="post-meta-item-icon">
@@ -315,19 +315,18 @@
     <div class="post-body" itemprop="articleBody">
         <p>gitee pages太慢了蚌埠住了，转移到github并绑定个人域名</p>
 <span id="more"></span>
-
 <p>建立在上一次部署gitee pages的基础上，详见<a target="_blank" rel="noopener" href="http://www.lyroch.site/posts/5e240c50/">Hexo-gitee搭建个人博客完整详细教程</a>，忽略gitee部分的配置就可以。</p>
-<h1 id="github-pages配置"><a href="#github-pages配置" class="headerlink" title="github pages配置"></a>github pages配置</h1><p>新建一个仓库，命名为名称.gitee.io，在hexo配置文件中deploy部分添加以下内容：</p>
+<h1 id="github-pages配置">github pages配置</h1>
+<p>新建一个仓库，<a target="_blank" rel="noopener" href="http://xn--siqu5lba95bm06m.gitee.io">命名为名称.gitee.io</a>，在hexo配置文件中deploy部分添加以下内容：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">- <span class="built_in">type</span>: git</span><br><span class="line">  repository: git@github.com:名称/名称.github.io.git</span><br><span class="line">  branch: master</span><br></pre></td></tr></table></figure>
-
 <p>在setting中左侧找到Pages，打开，将source的branch改成master。</p>
 <p>打开名称.gitee.io这个网址就可以看到了！</p>
-<h1 id="github-pages绑定个人域名"><a href="#github-pages绑定个人域名" class="headerlink" title="github pages绑定个人域名"></a>github pages绑定个人域名</h1><p>网上很多教程是错的。。。</p>
+<h1 id="github-pages绑定个人域名">github pages绑定个人域名</h1>
+<p>网上很多教程是错的。。。</p>
 <p>我的域名在阿里云买的，其他应该也是差不多的，找到解析域名的入口，添加<strong>5条</strong>解析记录。</p>
 <p>第一条，主机记录<code>www</code>，记录类型<code>CNAME</code>，解析线路默认，记录值<code>名称.github.io</code>。</p>
 <p>第2.3.4.5条，主机记录<code>@</code>，记录类型<code>A</code>，解析线路默认，记录值分别为以下四个：</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">185.199.108.153</span><br><span class="line">185.199.109.153</span><br><span class="line">185.199.110.153</span><br><span class="line">185.199.111.153</span><br></pre></td></tr></table></figure>
-
 <p>这样就可以从你自己的域名访问了！</p>
 <p>参考大佬<a target="_blank" rel="noopener" href="https://blog.csdn.net/i_do_not_know_you/article/details/105594269">博客</a></p>
 
@@ -427,7 +426,7 @@
       <i class="fa fa-chart-line"></i>
     </span>
       <span>站点总字数：</span>
-    <span title="站点总字数">99k</span>
+    <span title="站点总字数">92k</span>
   </span>
 </div>
 <div class="busuanzi-count">

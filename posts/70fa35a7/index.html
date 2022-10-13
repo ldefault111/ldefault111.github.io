@@ -136,7 +136,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%89%8D%E7%BD%AE%E5%86%85%E5%AE%B9"><span class="nav-number">1.</span> <span class="nav-text">前置内容</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Dice%E7%9B%B8%E4%BC%BC%E7%B3%BB%E6%95%B0"><span class="nav-number">2.</span> <span class="nav-text">Dice相似系数</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#IOU"><span class="nav-number">3.</span> <span class="nav-text">IOU</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%8F%82%E8%80%83%E6%96%87%E7%AB%A0"><span class="nav-number">4.</span> <span class="nav-text">参考文章</span></a></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%89%8D%E7%BD%AE%E5%86%85%E5%AE%B9"><span class="nav-number">1.</span> <span class="nav-text">前置内容</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#dice%E7%9B%B8%E4%BC%BC%E7%B3%BB%E6%95%B0"><span class="nav-number">2.</span> <span class="nav-text">Dice相似系数</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#iou"><span class="nav-number">3.</span> <span class="nav-text">IOU</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%8F%82%E8%80%83%E6%96%87%E7%AB%A0"><span class="nav-number">4.</span> <span class="nav-text">参考文章</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -299,7 +299,7 @@
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">本文字数：</span>
-      <span>1.1k</span>
+      <span>928</span>
     </span>
     <span class="post-meta-item" title="阅读时长">
       <span class="post-meta-item-icon">
@@ -319,49 +319,59 @@
     <div class="post-body" itemprop="articleBody">
         <p>介绍图像分割常用的评价指标</p>
 <span id="more"></span>
-
-<h1 id="前置内容"><a href="#前置内容" class="headerlink" title="前置内容"></a>前置内容</h1><table>
+<h1 id="前置内容">前置内容</h1>
+<table>
 <thead>
 <tr>
-<th align="center">判定&#x2F;事实</th>
-<th align="center">正</th>
-<th align="center">负</th>
+<th style="text-align:center">判定/事实</th>
+<th style="text-align:center">正</th>
+<th style="text-align:center">负</th>
 </tr>
 </thead>
-<tbody><tr>
-<td align="center">正</td>
-<td align="center">TP</td>
-<td align="center">FP</td>
+<tbody>
+<tr>
+<td style="text-align:center">正</td>
+<td style="text-align:center">TP</td>
+<td style="text-align:center">FP</td>
 </tr>
 <tr>
-<td align="center">负</td>
-<td align="center">FN</td>
-<td align="center">TN</td>
+<td style="text-align:center">负</td>
+<td style="text-align:center">FN</td>
+<td style="text-align:center">TN</td>
 </tr>
-</tbody></table>
-<h1 id="Dice相似系数"><a href="#Dice相似系数" class="headerlink" title="Dice相似系数"></a>Dice相似系数</h1><ul>
-<li><p>Dice Similariy Coefficient, DSC</p>
+</tbody>
+</table>
+<h1 id="dice相似系数">Dice相似系数</h1>
+<ul>
+<li>
+<p>Dice Similariy Coefficient, DSC</p>
 </li>
-<li><p>集合相似度度量指标，计算两个样本的相似度，范围0（最坏）~1（最好）</p>
+<li>
+<p>集合相似度度量指标，计算两个样本的相似度，范围0（最坏）~1（最好）</p>
 </li>
-<li><p>$Dice&#x3D;\frac{2TP}{FP+2TP+FN}$ </p>
+<li>
+<p><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>D</mi><mi>i</mi><mi>c</mi><mi>e</mi><mo>=</mo><mfrac><mrow><mn>2</mn><mi>T</mi><mi>P</mi></mrow><mrow><mi>F</mi><mi>P</mi><mo>+</mo><mn>2</mn><mi>T</mi><mi>P</mi><mo>+</mo><mi>F</mi><mi>N</mi></mrow></mfrac></mrow><annotation encoding="application/x-tex">Dice=\frac{2TP}{FP+2TP+FN}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">D</span><span class="mord mathdefault">i</span><span class="mord mathdefault">c</span><span class="mord mathdefault">e</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1.275662em;vertical-align:-0.403331em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.872331em;"><span style="top:-2.655em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight" style="margin-right:0.13889em;">F</span><span class="mord mathdefault mtight" style="margin-right:0.13889em;">P</span><span class="mbin mtight">+</span><span class="mord mtight">2</span><span class="mord mathdefault mtight" style="margin-right:0.13889em;">T</span><span class="mord mathdefault mtight" style="margin-right:0.13889em;">P</span><span class="mbin mtight">+</span><span class="mord mathdefault mtight" style="margin-right:0.13889em;">F</span><span class="mord mathdefault mtight" style="margin-right:0.10903em;">N</span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.394em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">2</span><span class="mord mathdefault mtight" style="margin-right:0.13889em;">T</span><span class="mord mathdefault mtight" style="margin-right:0.13889em;">P</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.403331em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span></p>
 </li>
-<li><p>pytorch代码：</p>
+<li>
+<p>pytorch代码：</p>
 </li>
 </ul>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">dice_coef</span>(<span class="params">output, target</span>):    <span class="comment">#output为预测结果 target为真实结果</span></span><br><span class="line">    smooth = <span class="number">1e-5</span>                 <span class="comment">#防止0除</span></span><br><span class="line">    <span class="keyword">if</span> torch.is_tensor(output):</span><br><span class="line">        output = torch.sigmoid(output).data.cpu().numpy()</span><br><span class="line">    <span class="keyword">if</span> torch.is_tensor(target):</span><br><span class="line">        target = target.data.cpu().numpy()</span><br><span class="line">    intersection = (output * target).<span class="built_in">sum</span>()</span><br><span class="line">    <span class="keyword">return</span> (<span class="number">2.</span> * intersection + smooth) / \</span><br><span class="line">        (output.<span class="built_in">sum</span>() + target.<span class="built_in">sum</span>() + smooth)</span><br></pre></td></tr></table></figure>
-
-<h1 id="IOU"><a href="#IOU" class="headerlink" title="IOU"></a>IOU</h1><ul>
-<li><p>交并比</p>
+<h1 id="iou">IOU</h1>
+<ul>
+<li>
+<p>交并比</p>
 </li>
-<li><p>$IoU&#x3D;\frac{TP}{FP+TP+FN}$</p>
+<li>
+<p><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>I</mi><mi>o</mi><mi>U</mi><mo>=</mo><mfrac><mrow><mi>T</mi><mi>P</mi></mrow><mrow><mi>F</mi><mi>P</mi><mo>+</mo><mi>T</mi><mi>P</mi><mo>+</mo><mi>F</mi><mi>N</mi></mrow></mfrac></mrow><annotation encoding="application/x-tex">IoU=\frac{TP}{FP+TP+FN}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.07847em;">I</span><span class="mord mathdefault">o</span><span class="mord mathdefault" style="margin-right:0.10903em;">U</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1.275662em;vertical-align:-0.403331em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.872331em;"><span style="top:-2.655em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight" style="margin-right:0.13889em;">F</span><span class="mord mathdefault mtight" style="margin-right:0.13889em;">P</span><span class="mbin mtight">+</span><span class="mord mathdefault mtight" style="margin-right:0.13889em;">T</span><span class="mord mathdefault mtight" style="margin-right:0.13889em;">P</span><span class="mbin mtight">+</span><span class="mord mathdefault mtight" style="margin-right:0.13889em;">F</span><span class="mord mathdefault mtight" style="margin-right:0.10903em;">N</span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.394em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight" style="margin-right:0.13889em;">T</span><span class="mord mathdefault mtight" style="margin-right:0.13889em;">P</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.403331em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span></p>
 </li>
-<li><p>pytorch代码：</p>
+<li>
+<p>pytorch代码：</p>
 </li>
 </ul>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">iou_score</span>(<span class="params">output, target</span>):</span><br><span class="line">    smooth = <span class="number">1e-5</span></span><br><span class="line">    <span class="keyword">if</span> torch.is_tensor(output):</span><br><span class="line">        output = torch.sigmoid(output).data.cpu().numpy()</span><br><span class="line">    <span class="keyword">if</span> torch.is_tensor(target):</span><br><span class="line">        target = target.data.cpu().numpy()</span><br><span class="line">    output_ = output &gt; <span class="number">0.5</span></span><br><span class="line">    target_ = target &gt; <span class="number">0.5</span></span><br><span class="line">    intersection = (output_ &amp; target_).<span class="built_in">sum</span>()</span><br><span class="line">    union = (output_ | target_).<span class="built_in">sum</span>()</span><br><span class="line">    <span class="keyword">return</span> (intersection + smooth) / (union + smooth)</span><br></pre></td></tr></table></figure>
-
-<h1 id="参考文章"><a href="#参考文章" class="headerlink" title="参考文章"></a>参考文章</h1><p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/117435908">分割常用评价指标Dice、Hausdorff_95、IOU、PPV等(打马)</a></p>
+<h1 id="参考文章">参考文章</h1>
+<p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/117435908">分割常用评价指标Dice、Hausdorff_95、IOU、PPV等(打马)</a></p>
 
     </div>
 
@@ -459,7 +469,7 @@
       <i class="fa fa-chart-line"></i>
     </span>
       <span>站点总字数：</span>
-    <span title="站点总字数">99k</span>
+    <span title="站点总字数">92k</span>
   </span>
 </div>
 <div class="busuanzi-count">

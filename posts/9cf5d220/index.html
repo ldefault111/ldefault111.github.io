@@ -136,7 +136,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%AE%89%E8%A3%85%E6%8F%92%E4%BB%B6"><span class="nav-number">1.</span> <span class="nav-text">安装插件</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%B7%BB%E5%8A%A0%E8%BF%9E%E6%8E%A5"><span class="nav-number">2.</span> <span class="nav-text">添加连接</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%AE%89%E5%85%A8%E7%BB%84%E8%AE%BE%E7%BD%AE"><span class="nav-number">3.</span> <span class="nav-text">安全组设置</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%9B%B4%E6%8D%A2%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E8%BF%9E%E6%8E%A5%E6%B3%A8%E6%84%8F"><span class="nav-number">4.</span> <span class="nav-text">更换操作系统连接注意</span></a></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%AE%89%E8%A3%85%E6%8F%92%E4%BB%B6"><span class="nav-number">1.</span> <span class="nav-text">安装插件</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%B7%BB%E5%8A%A0%E8%BF%9E%E6%8E%A5"><span class="nav-number">2.</span> <span class="nav-text">添加连接</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%AE%89%E5%85%A8%E7%BB%84%E8%AE%BE%E7%BD%AE"><span class="nav-number">3.</span> <span class="nav-text">安全组设置</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%9B%B4%E6%8D%A2%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E8%BF%9E%E6%8E%A5%E6%B3%A8%E6%84%8F"><span class="nav-number">4.</span> <span class="nav-text">更换操作系统连接注意</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%8F%AF%E9%80%89-%E5%AE%89%E8%A3%85sftp%E6%8F%92%E4%BB%B6"><span class="nav-number">5.</span> <span class="nav-text">（可选）安装SFTP插件</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -255,7 +255,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-10-08 22:56:04" itemprop="dateModified" datetime="2022-10-08T22:56:04+08:00">2022-10-08</time>
+      <time title="修改时间：2022-10-13 23:57:49" itemprop="dateModified" datetime="2022-10-13T23:57:49+08:00">2022-10-13</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -295,7 +295,7 @@
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">本文字数：</span>
-      <span>387</span>
+      <span>1.1k</span>
     </span>
     <span class="post-meta-item" title="阅读时长">
       <span class="post-meta-item-icon">
@@ -337,6 +337,15 @@
 <p>应该就可以连接成功了，除非你的密码不记得了，可以去阿里云控制台重置密码</p>
 <h1 id="更换操作系统连接注意">更换操作系统连接注意</h1>
 <p>如果重新远程连接，ip地址没换会出现连接错误，是因为RemoteSSH连接ip会记录公钥，在<code>C:/Users/xxx/.ssh/known_hosts</code>里，需要手动将里面你服务器ip对应的内容删掉，就可以重新连接了</p>
+<h1 id="可选-安装sftp插件">（可选）安装SFTP插件</h1>
+<p>SFTP插件用于本机和服务器之间互传文件，本质是本机和服务器共享一个文件夹。在本机安装vscode插件：</p>
+<img data-src="/posts/9cf5d220/image-20221013213309283.png" class="" title="image-20221013213309283">
+<p>vscode打开需要同步的本地文件夹，输入<code>Ctrl+Shift+P</code>，输入sftp，并点击：</p>
+<img data-src="/posts/9cf5d220/image-20221013235451092.png" class="" title="image-20221013235451092">
+<p>打开了一个json文件，配置示例如下：</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;name&quot;</span><span class="punctuation">:</span> <span class="string">&quot;随便起&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;host&quot;</span><span class="punctuation">:</span> <span class="string">&quot;公网ip&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;protocol&quot;</span><span class="punctuation">:</span> <span class="string">&quot;sftp&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;port&quot;</span><span class="punctuation">:</span> <span class="number">22</span><span class="punctuation">,</span>	</span><br><span class="line">    <span class="attr">&quot;username&quot;</span><span class="punctuation">:</span> <span class="string">&quot;登录名，比如root&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;password&quot;</span><span class="punctuation">:</span> <span class="string">&quot;登录的密码&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;privateKeyPath&quot;</span><span class="punctuation">:</span> <span class="string">&quot;这一步好多教程都缺了，这里输入的是私钥的地址，一般是C:/Users/xxx/.ssh/id_rsa&quot;</span><span class="punctuation">,</span> </span><br><span class="line">    <span class="attr">&quot;remotePath&quot;</span><span class="punctuation">:</span> <span class="string">&quot;服务器中的路径，比如/root/ssl&quot;</span><span class="punctuation">,</span> </span><br><span class="line">    <span class="attr">&quot;uploadOnSave&quot;</span><span class="punctuation">:</span> <span class="literal"><span class="keyword">false</span></span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;watcher&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">        <span class="attr">&quot;files&quot;</span><span class="punctuation">:</span> <span class="string">&quot;*&quot;</span><span class="punctuation">,</span></span><br><span class="line">        <span class="attr">&quot;autoUpload&quot;</span><span class="punctuation">:</span> <span class="literal"><span class="keyword">false</span></span><span class="punctuation">,</span></span><br><span class="line">        <span class="attr">&quot;autoDelete&quot;</span><span class="punctuation">:</span> <span class="literal"><span class="keyword">false</span></span></span><br><span class="line">    <span class="punctuation">&#125;</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+<p>在工作区右键就可以上传下载同步文件了：</p>
+<img data-src="/posts/9cf5d220/image-20221013235727299.png" class="" title="image-20221013235727299">
 
     </div>
 
@@ -430,7 +439,7 @@
       <i class="fa fa-chart-line"></i>
     </span>
       <span>站点总字数：</span>
-    <span title="站点总字数">99k</span>
+    <span title="站点总字数">92k</span>
   </span>
 </div>
 <div class="busuanzi-count">

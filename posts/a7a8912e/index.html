@@ -136,7 +136,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%BF%9B%E7%A8%8B"><span class="nav-number">1.</span> <span class="nav-text">进程</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#fork"><span class="nav-number">1.1.</span> <span class="nav-text">fork</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#exec"><span class="nav-number">1.2.</span> <span class="nav-text">exec</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#I-x2F-O"><span class="nav-number">2.</span> <span class="nav-text">I&#x2F;O</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%AE%A1%E9%81%93"><span class="nav-number">3.</span> <span class="nav-text">管道</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%94%A8%E6%88%B7-x2F-%E5%86%85%E6%A0%B8%E6%A8%A1%E5%BC%8F"><span class="nav-number">4.</span> <span class="nav-text">用户&#x2F;内核模式</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E9%A1%B5%E8%A1%A8"><span class="nav-number">5.</span> <span class="nav-text">页表</span></a></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%BF%9B%E7%A8%8B"><span class="nav-number">1.</span> <span class="nav-text">进程</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#fork"><span class="nav-number">1.1.</span> <span class="nav-text">fork</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#exec"><span class="nav-number">1.2.</span> <span class="nav-text">exec</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#i-o"><span class="nav-number">2.</span> <span class="nav-text">I&#x2F;O</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%AE%A1%E9%81%93"><span class="nav-number">3.</span> <span class="nav-text">管道</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%94%A8%E6%88%B7-%E5%86%85%E6%A0%B8%E6%A8%A1%E5%BC%8F"><span class="nav-number">4.</span> <span class="nav-text">用户&#x2F;内核模式</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E9%A1%B5%E8%A1%A8"><span class="nav-number">5.</span> <span class="nav-text">页表</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -295,7 +295,7 @@
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">本文字数：</span>
-      <span>551</span>
+      <span>516</span>
     </span>
     <span class="post-meta-item" title="阅读时长">
       <span class="post-meta-item-icon">
@@ -315,45 +315,60 @@
     <div class="post-body" itemprop="articleBody">
         <p>学习过程中的一些理解，并非完整的操作系统理论知识笔记</p>
 <span id="more"></span>
-
-<h1 id="进程"><a href="#进程" class="headerlink" title="进程"></a>进程</h1><ul>
+<h1 id="进程">进程</h1>
+<ul>
 <li>内核将每个进程与一个进程标识符pid关联</li>
 </ul>
-<h2 id="fork"><a href="#fork" class="headerlink" title="fork"></a>fork</h2><ul>
-<li><p>进程创建子进程的函数</p>
+<h2 id="fork">fork</h2>
+<ul>
+<li>
+<p>进程创建子进程的函数</p>
 </li>
-<li><p>创建子进程的过程可以视作，父进程的所有资源<strong>复制</strong>一份，即父子进程拥有独立的资源，子进程与父进程代码相同但是从<code>fork()</code>函数之后开始执行</p>
+<li>
+<p>创建子进程的过程可以视作，父进程的所有资源<strong>复制</strong>一份，即父子进程拥有独立的资源，子进程与父进程代码相同但是从<code>fork()</code>函数之后开始执行</p>
 </li>
-<li><p>进程用<code>exit</code> 函数退出，子进程向父进程返回 $pid$ ，子进程的函数返回 $0$</p>
+<li>
+<p>进程用<code>exit</code> 函数退出，子进程向父进程返回 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>p</mi><mi>i</mi><mi>d</mi></mrow><annotation encoding="application/x-tex">pid</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="mord mathdefault">p</span><span class="mord mathdefault">i</span><span class="mord mathdefault">d</span></span></span></span> ，子进程的函数返回 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>0</mn></mrow><annotation encoding="application/x-tex">0</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">0</span></span></span></span></p>
 </li>
-<li><p>父进程用<code>wait</code>函数等待子进程完成</p>
+<li>
+<p>父进程用<code>wait</code>函数等待子进程完成</p>
 </li>
 </ul>
-<h2 id="exec"><a href="#exec" class="headerlink" title="exec"></a>exec</h2><ul>
+<h2 id="exec">exec</h2>
+<ul>
 <li>从指定的文件中读取并加载指令，并替代当前调用进程的指令（丢弃了原进程的资源），原进程不需要单独写返回（完全替代了原进程）</li>
 </ul>
-<h1 id="I-x2F-O"><a href="#I-x2F-O" class="headerlink" title="I&#x2F;O"></a>I&#x2F;O</h1><ul>
+<h1 id="i-o">I/O</h1>
+<ul>
 <li>系统调用 <code>read</code> 和 <code>write</code> 从文件描述符所指的文件中读或者写 n 个字节。<code>read(fd, buf, n)</code> 从 <code>fd</code> 读最多 n 个字节（<code>fd</code> 可能没有 n 个字节），将它们拷贝到 <code>buf</code> 中，然后返回读出的字节数。</li>
 </ul>
-<h1 id="管道"><a href="#管道" class="headerlink" title="管道"></a>管道</h1><ul>
-<li><p>进程间通信</p>
+<h1 id="管道">管道</h1>
+<ul>
+<li>
+<p>进程间通信</p>
 </li>
-<li><p>读和写描述符</p>
+<li>
+<p>读和写描述符</p>
 </li>
 </ul>
-<img src="/posts/a7a8912e/pipe.jpg" class="" title="pipe">
-
-<h1 id="用户-x2F-内核模式"><a href="#用户-x2F-内核模式" class="headerlink" title="用户&#x2F;内核模式"></a>用户&#x2F;内核模式</h1><ul>
-<li>普通权限&#x2F;特定权限指令</li>
+<img data-src="/posts/a7a8912e/pipe.jpg" class="" title="pipe">
+<h1 id="用户-内核模式">用户/内核模式</h1>
+<ul>
+<li>普通权限/特定权限指令</li>
 </ul>
-<h1 id="页表"><a href="#页表" class="headerlink" title="页表"></a>页表</h1><ul>
-<li><p>内存管理单元（MMU，Memory Management Unit）将指令中的（虚拟）地址转换成物理地址</p>
+<h1 id="页表">页表</h1>
+<ul>
+<li>
+<p>内存管理单元（MMU，Memory Management Unit）将指令中的（虚拟）地址转换成物理地址</p>
 </li>
-<li><p>SATP的寄存器会保存页表的物理地址（指向最高一级的页表）</p>
+<li>
+<p>SATP的寄存器会保存页表的物理地址（指向最高一级的页表）</p>
 </li>
-<li><p>index和offset，index用来查找page，offset对应的是一个page中的哪个字节</p>
+<li>
+<p>index和offset，index用来查找page，offset对应的是一个page中的哪个字节</p>
 </li>
-<li><p>一般三级页表</p>
+<li>
+<p>一般三级页表</p>
 </li>
 </ul>
 
@@ -453,7 +468,7 @@
       <i class="fa fa-chart-line"></i>
     </span>
       <span>站点总字数：</span>
-    <span title="站点总字数">99k</span>
+    <span title="站点总字数">92k</span>
   </span>
 </div>
 <div class="busuanzi-count">

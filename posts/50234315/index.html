@@ -136,7 +136,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E9%97%AE%E9%A2%98"><span class="nav-number">1.</span> <span class="nav-text">问题</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95%E4%B8%80%EF%BC%9A%E7%BD%91%E7%BB%9C%E5%9B%BE%E5%BA%8A%EF%BC%88%E5%BC%83%E7%94%A8%EF%BC%89"><span class="nav-number">2.</span> <span class="nav-text">解决方法一：网络图床（弃用）</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95%E4%BA%8C%EF%BC%9Ahexo-asset-image%EF%BC%88archived%E4%BA%86%EF%BC%8C%E4%B8%94%E6%B2%A1%E5%BF%85%E8%A6%81%EF%BC%8C%E5%BC%83%E7%94%A8%EF%BC%89"><span class="nav-number">3.</span> <span class="nav-text">解决方法二：hexo-asset-image（archived了，且没必要，弃用）</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95%E4%B8%89%EF%BC%9A%E5%AE%98%E6%96%B9%E6%A0%87%E7%AD%BE%E5%BC%95%E7%94%A8%EF%BC%88%E6%97%A0%E6%B3%95%E5%AE%9E%E6%97%B6%E9%A2%84%E8%A7%88%EF%BC%8C%E5%BC%83%E7%94%A8%EF%BC%89"><span class="nav-number">4.</span> <span class="nav-text">解决方法三：官方标签引用（无法实时预览，弃用）</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88%E5%9B%9B%EF%BC%9Ahexo-asset-img%E6%8F%92%E4%BB%B6"><span class="nav-number">5.</span> <span class="nav-text">解决方案四：hexo-asset-img插件</span></a></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E9%97%AE%E9%A2%98"><span class="nav-number">1.</span> <span class="nav-text">问题</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95%E4%B8%80%EF%BC%9A%E7%BD%91%E7%BB%9C%E5%9B%BE%E5%BA%8A-%E5%BC%83%E7%94%A8"><span class="nav-number">2.</span> <span class="nav-text">解决方法一：网络图床（弃用）</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95%E4%BA%8C%EF%BC%9Ahexo-asset-image-archived%E4%BA%86-%E4%B8%94%E6%B2%A1%E5%BF%85%E8%A6%81-%E5%BC%83%E7%94%A8"><span class="nav-number">3.</span> <span class="nav-text">解决方法二：hexo-asset-image（archived了，且没必要，弃用）</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95%E4%B8%89%EF%BC%9A%E5%AE%98%E6%96%B9%E6%A0%87%E7%AD%BE%E5%BC%95%E7%94%A8-%E6%97%A0%E6%B3%95%E5%AE%9E%E6%97%B6%E9%A2%84%E8%A7%88-%E5%BC%83%E7%94%A8"><span class="nav-number">4.</span> <span class="nav-text">解决方法三：官方标签引用（无法实时预览，弃用）</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88%E5%9B%9B%EF%BC%9Ahexo-asset-img%E6%8F%92%E4%BB%B6"><span class="nav-number">5.</span> <span class="nav-text">解决方案四：hexo-asset-img插件</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -315,21 +315,23 @@
     <div class="post-body" itemprop="articleBody">
         <p>Hexo博客的图片插入问题很大，现在网上大部分搜出来装hexo-asset-image插件的做法是没必要的，本篇教程给出的方法能够成功插入图片，并能在写博客时实时看到图片。不想看其他错误方法直接跳到解决方法四。</p>
 <span id="more"></span>
-
-<h1 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h1><p>本地图片插入（像Typora，Marktext之类的）用的本地绝对路径或相对路径多多少少都出现了博客上看不见图片的情况。</p>
-<h1 id="解决方法一：网络图床（弃用）"><a href="#解决方法一：网络图床（弃用）" class="headerlink" title="解决方法一：网络图床（弃用）"></a>解决方法一：网络图床（弃用）</h1><p>使用PicGo搭配Typora、Marktext之类的md编辑器，可以很方便的将图片上传Gitee、Github、OSS等图床，教程网上随便搜。</p>
+<h1 id="问题">问题</h1>
+<p>本地图片插入（像Typora，Marktext之类的）用的本地绝对路径或相对路径多多少少都出现了博客上看不见图片的情况。</p>
+<h1 id="解决方法一：网络图床-弃用">解决方法一：网络图床（弃用）</h1>
+<p>使用PicGo搭配Typora、Marktext之类的md编辑器，可以很方便的将图片上传Gitee、Github、OSS等图床，教程网上随便搜。</p>
 <p>网络免费图床不稳定且管理不方便，像Gitee图床挂了，Github其实也是有要求不可以做图床的（访问还慢，jsdelivr挂了之后），收费图床还是存在管理问题，访问量太大的话费用也不低，最后还是想了想去折腾本地图片的插入。</p>
-<h1 id="解决方法二：hexo-asset-image（archived了，且没必要，弃用）"><a href="#解决方法二：hexo-asset-image（archived了，且没必要，弃用）" class="headerlink" title="解决方法二：hexo-asset-image（archived了，且没必要，弃用）"></a>解决方法二：hexo-asset-image（archived了，且没必要，弃用）</h1><p>网上大部分教程要npm安装hexo-asset-image，完全没必要，在Hexo的Github issues中我发现官方回复高版本的Hexo中已经内置了插入图片的方式，这个插件本身貌似也有问题</p>
-<h1 id="解决方法三：官方标签引用（无法实时预览，弃用）"><a href="#解决方法三：官方标签引用（无法实时预览，弃用）" class="headerlink" title="解决方法三：官方标签引用（无法实时预览，弃用）"></a>解决方法三：官方标签引用（无法实时预览，弃用）</h1><p>将Hexo的配置文件打开，更改以下内容：</p>
+<h1 id="解决方法二：hexo-asset-image-archived了-且没必要-弃用">解决方法二：hexo-asset-image（archived了，且没必要，弃用）</h1>
+<p>网上大部分教程要npm安装hexo-asset-image，完全没必要，在Hexo的Github issues中我发现官方回复高版本的Hexo中已经内置了插入图片的方式，这个插件本身貌似也有问题</p>
+<h1 id="解决方法三：官方标签引用-无法实时预览-弃用">解决方法三：官方标签引用（无法实时预览，弃用）</h1>
+<p>将Hexo的配置文件打开，更改以下内容：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">post_asset_folder: <span class="literal">true</span></span><br></pre></td></tr></table></figure>
-
 <p>这样每次使用<code>hexo new &quot;postname&quot;</code>生成新博客文件时都会在<code>_post</code>文件夹下创建一个同名<code>postname</code>文件夹。</p>
 <p>如果我们在上述文件夹放了一个图片<code>abc.jpg</code>，那么就可以在postname.md文件中直接用<code>![](abc.jpg)</code>来引用图片，或者用官方的标签<code>&#123;% asset_img abc.jpg description_of_abc %&#125;</code>，能够正确显示在网页上。（原理是这个图片在<code>hexo g</code>时被复制到了<code>public</code>文件夹，生成时的html标签是直接从<code>public</code>文件夹里引用的图片）</p>
 <p>但是这样做有一个问题，在写博客的时候，没法实时看到图片，因为<code>![](abc.jpg)</code>这种引用在markdown中没法定位到<code>postname/abc.jpg</code>的。</p>
-<h1 id="解决方案四：hexo-asset-img插件"><a href="#解决方案四：hexo-asset-img插件" class="headerlink" title="解决方案四：hexo-asset-img插件"></a>解决方案四：hexo-asset-img插件</h1><p>有位大神做了插件<a target="_blank" rel="noopener" href="https://github.com/yiyungent/hexo-asset-img">hexo-asset-img</a>，直接<code>npm install hexo-asset-img --save</code>。</p>
+<h1 id="解决方案四：hexo-asset-img插件">解决方案四：hexo-asset-img插件</h1>
+<p>有位大神做了插件<a target="_blank" rel="noopener" href="https://github.com/yiyungent/hexo-asset-img">hexo-asset-img</a>，直接<code>npm install hexo-asset-img --save</code>。</p>
 <p>这个插件是对解决方案三的改进，首先要将Hexo的配置文件打开，更改以下内容：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">post_asset_folder: <span class="literal">true</span></span><br></pre></td></tr></table></figure>
-
 <p>这样每次使用<code>hexo new &quot;postname&quot;</code>生成新博客文件时都会在<code>_post</code>文件夹下创建一个同名<code>postname</code>文件夹。</p>
 <p>如果我们在上述文件夹放了一个图片<code>abc.jpg</code>，与解决方案三不同的是，我们在md中可以正常使用<code>![abc](postname/abc.jpg)</code>来插入图片，写博客时就能看到图片，但如果生成博客就显示不出来图片。</p>
 <p>现在问题很简单，怎么能在生成时将<code>![abc](postname/abc.jpg)</code>转化成官方的标签格式<code>&#123;% asset_img abc.jpg description_of_abc %&#125;</code>，大神写的插件（上面安装那个）就是做了这件事。</p>
@@ -434,7 +436,7 @@
       <i class="fa fa-chart-line"></i>
     </span>
       <span>站点总字数：</span>
-    <span title="站点总字数">99k</span>
+    <span title="站点总字数">92k</span>
   </span>
 </div>
 <div class="busuanzi-count">

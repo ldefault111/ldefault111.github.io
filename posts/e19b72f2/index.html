@@ -299,7 +299,7 @@
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">本文字数：</span>
-      <span>722</span>
+      <span>712</span>
     </span>
     <span class="post-meta-item" title="阅读时长">
       <span class="post-meta-item-icon">
@@ -319,50 +319,71 @@
     <div class="post-body" itemprop="articleBody">
         <p>函数拟合是连续建模的一种方法。</p>
 <span id="more"></span>
-
-<h1 id="引入"><a href="#引入" class="headerlink" title="引入"></a>引入</h1><p>实际问题可建模为找一个函数，先确定函数空间（待定系数求解在该空间的表达），找“最好的”函数，优化求解</p>
-<h1 id="step1：函数空间"><a href="#step1：函数空间" class="headerlink" title="step1：函数空间"></a>step1：函数空间</h1><p>确定函数空间，待定系数求解在该空间的表达</p>
-<h1 id="step2：找最好的函数"><a href="#step2：找最好的函数" class="headerlink" title="step2：找最好的函数"></a>step2：找最好的函数</h1><ul>
-<li><p>根据目标来定</p>
+<h1 id="引入">引入</h1>
+<p>实际问题可建模为找一个函数，先确定函数空间（待定系数求解在该空间的表达），找“最好的”函数，优化求解</p>
+<h1 id="step1：函数空间">step1：函数空间</h1>
+<p>确定函数空间，待定系数求解在该空间的表达</p>
+<h1 id="step2：找最好的函数">step2：找最好的函数</h1>
 <ul>
-<li><p>函数必须经过每个数据点：插值，对于$n$ 个点须求解$n\times n$ 线性方程组，$n$ 次拉格朗日插值多项式，系数高时不稳定</p>
-</li>
-<li><p>函数尽量靠近数据点：逼近，优化问题，最小二乘法，系数的个数选择会有欠拟合&#x2F;过拟合（利用数据去噪、数据增广、模型简化、正则约束等方法解决）的问题</p>
-</li>
-</ul>
-</li>
-<li><p>函数分类：</p>
+<li>
+<p>根据目标来定</p>
 <ul>
-<li><p>分段线性插值函数：性质不够好，不光滑，不方便数值计算</p>
+<li>
+<p>函数必须经过每个数据点：插值，对于<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi></mrow><annotation encoding="application/x-tex">n</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">n</span></span></span></span> 个点须求解<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi><mo>×</mo><mi>n</mi></mrow><annotation encoding="application/x-tex">n\times n</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.66666em;vertical-align:-0.08333em;"></span><span class="mord mathdefault">n</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">n</span></span></span></span> 线性方程组，<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi></mrow><annotation encoding="application/x-tex">n</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">n</span></span></span></span> 次拉格朗日插值多项式，系数高时不稳定</p>
 </li>
-<li><p>光滑插值函数：容易被噪声带歪</p>
-</li>
-<li><p>逼近拟合函数：误差够小，抵抗一定噪声</p>
+<li>
+<p>函数尽量靠近数据点：逼近，优化问题，最小二乘法，系数的个数选择会有欠拟合/过拟合（利用数据去噪、数据增广、模型简化、正则约束等方法解决）的问题</p>
 </li>
 </ul>
 </li>
-<li><p>补：正则项</p>
+<li>
+<p>函数分类：</p>
 <ul>
-<li><p>能量项&#x3D;误差项+正则项（用于限制拟合函数的特点）</p>
+<li>
+<p>分段线性插值函数：性质不够好，不光滑，不方便数值计算</p>
 </li>
-<li><p>最小二乘拟合$\min _{W}|Y-X W|^{2}$</p>
+<li>
+<p>光滑插值函数：容易被噪声带歪</p>
 </li>
-<li><p>Ridge regression （岭回归）：$\min_{W}|Y-X W|^{2}+\mu|W|_{2}^{2}$，让系数模尽可能小</p>
+<li>
+<p>逼近拟合函数：误差够小，抵抗一定噪声</p>
 </li>
-<li><p>稀疏学习：稀疏正则化：冗余基函数（过完备），通过优化来选择合适的基函数</p>
+</ul>
+</li>
+<li>
+<p>补：正则项</p>
 <ul>
-<li><p>数向量的$L_{0}$ 模 ( 非 0 元素个数) 尽量小</p>
+<li>
+<p>能量项=误差项+正则项（用于限制拟合函数的特点）</p>
 </li>
-<li><p>通过学习得到合适的基函数</p>
+<li>
+<p>最小二乘拟合<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mo><mi>min</mi><mo>⁡</mo></mo><mi>W</mi></msub><mi mathvariant="normal">∥</mi><mi>Y</mi><mo>−</mo><mi>X</mi><mi>W</mi><msup><mi mathvariant="normal">∥</mi><mn>2</mn></msup></mrow><annotation encoding="application/x-tex">\min _{W}\|Y-X W\|^{2}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mop"><span class="mop">min</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.32833099999999993em;"><span style="top:-2.5500000000000003em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight" style="margin-right:0.13889em;">W</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord">∥</span><span class="mord mathdefault" style="margin-right:0.22222em;">Y</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1.064108em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.07847em;">X</span><span class="mord mathdefault" style="margin-right:0.13889em;">W</span><span class="mord"><span class="mord">∥</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span></span></span></span></span></p>
+</li>
+<li>
+<p>Ridge regression （岭回归）：<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mo><mi>min</mi><mo>⁡</mo></mo><mi>W</mi></msub><mi mathvariant="normal">∥</mi><mi>Y</mi><mo>−</mo><mi>X</mi><mi>W</mi><msup><mi mathvariant="normal">∥</mi><mn>2</mn></msup><mo>+</mo><mi>μ</mi><mi mathvariant="normal">∥</mi><mi>W</mi><msubsup><mi mathvariant="normal">∥</mi><mn>2</mn><mn>2</mn></msubsup></mrow><annotation encoding="application/x-tex">\min_{W}\|Y-X W\|^{2}+\mu\|W\|_{2}^{2}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mop"><span class="mop">min</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.32833099999999993em;"><span style="top:-2.5500000000000003em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight" style="margin-right:0.13889em;">W</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord">∥</span><span class="mord mathdefault" style="margin-right:0.22222em;">Y</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1.064108em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.07847em;">X</span><span class="mord mathdefault" style="margin-right:0.13889em;">W</span><span class="mord"><span class="mord">∥</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1.064108em;vertical-align:-0.25em;"></span><span class="mord mathdefault">μ</span><span class="mord">∥</span><span class="mord mathdefault" style="margin-right:0.13889em;">W</span><span class="mord"><span class="mord">∥</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-2.4518920000000004em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">2</span></span></span></span><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">2</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.24810799999999997em;"><span></span></span></span></span></span></span></span></span></span>，让系数模尽可能小</p>
+</li>
+<li>
+<p>稀疏学习：稀疏正则化：冗余基函数（过完备），通过优化来选择合适的基函数</p>
+<ul>
+<li>
+<p>数向量的<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>L</mi><mn>0</mn></msub></mrow><annotation encoding="application/x-tex">L_{0}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.83333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathdefault">L</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">0</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span> 模 ( 非 0 元素个数) 尽量小</p>
+</li>
+<li>
+<p>通过学习得到合适的基函数</p>
 </li>
 </ul>
-<p>$$<br>\begin{aligned}</p>
+<p class='katex-block katex-error' title='ParseError: KaTeX parse error: Expected &amp; or \\ or \cr or \end at end of input: …begin{aligned}
+'>\begin{aligned}
+</p>
 </li>
 </ul>
 </li>
 </ul>
-<p>&amp;\min <em>{\alpha}|Y-X W|^{2}+\mu|W|</em>{0} \<br>&amp;\min <em>{\alpha}|Y-X Wy |^{2}, \quad \text { s.t. }|W|</em>{0} \leq \beta<br>\end{aligned}<br>    $$</p>
-<h1 id="step3：求解得到具体函数"><a href="#step3：求解得到具体函数" class="headerlink" title="step3：求解得到具体函数"></a>step3：求解得到具体函数</h1><p>找误差函数的驻点，系数列方程组求解，无穷多解时修正模型（改进正则项等）</p>
+<p>&amp;\min <em>{\alpha}|Y-X Wy |^{2}, \quad \text { s.t. }|W|</em>{0} \leq \beta<br>
+\end{aligned}<br>
+$$</p>
+<h1 id="step3：求解得到具体函数">step3：求解得到具体函数</h1>
+<p>找误差函数的驻点，系数列方程组求解，无穷多解时修正模型（改进正则项等）</p>
 
     </div>
 
@@ -460,7 +481,7 @@
       <i class="fa fa-chart-line"></i>
     </span>
       <span>站点总字数：</span>
-    <span title="站点总字数">99k</span>
+    <span title="站点总字数">92k</span>
   </span>
 </div>
 <div class="busuanzi-count">

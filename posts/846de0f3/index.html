@@ -299,7 +299,7 @@
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">本文字数：</span>
-      <span>474</span>
+      <span>383</span>
     </span>
     <span class="post-meta-item" title="阅读时长">
       <span class="post-meta-item-icon">
@@ -319,15 +319,15 @@
     <div class="post-body" itemprop="articleBody">
         <p>区间DP是在区间上的动态规划</p>
 <span id="more"></span>
-
-<h1 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h1><ul>
-<li>状态为区间：常设<code>dp[i][j]</code>表示区间 $[i,j]$ 的状态</li>
+<h1 id="正文">正文</h1>
+<ul>
+<li>状态为区间：常设<code>dp[i][j]</code>表示区间 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">[</mo><mi>i</mi><mo separator="true">,</mo><mi>j</mi><mo stretchy="false">]</mo></mrow><annotation encoding="application/x-tex">[i,j]</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">[</span><span class="mord mathdefault">i</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault" style="margin-right:0.05724em;">j</span><span class="mclose">]</span></span></span></span> 的状态</li>
 <li>思想：区间的状态由子区间更新而来</li>
-<li>题目技巧1：断环成链：首尾相连得到 $2$ 倍环，转化为区间。注意区间要更新到 $n+1\sim 2n$ 的段。</li>
+<li>题目技巧1：断环成链：首尾相连得到 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>2</mn></mrow><annotation encoding="application/x-tex">2</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">2</span></span></span></span> 倍环，转化为区间。注意区间要更新到 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi><mo>+</mo><mn>1</mn><mo>∼</mo><mn>2</mn><mi>n</mi></mrow><annotation encoding="application/x-tex">n+1\sim 2n</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.66666em;vertical-align:-0.08333em;"></span><span class="mord mathdefault">n</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">∼</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">2</span><span class="mord mathdefault">n</span></span></span></span> 的段。</li>
 </ul>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="type">int</span> len = <span class="number">1</span>; len &lt; n; len++) <span class="comment">// 区间长度，由小区间开始dp，因为最先能确定的一定是最小的区间</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> l = <span class="number">1</span>, r = len + <span class="number">1</span>; l &lt;= n &amp;&amp; r &lt;= n; l++, r++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="type">int</span> ans = INF; <span class="comment">// int ans=0; 取决于要求的是最大值还是最小值</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> k = l; k &lt; r; k++)</span><br><span class="line">            ans = <span class="built_in">max</span>(ans, dp[l][k] + dp[k + <span class="number">1</span>][r] + 对这俩区间操作得到的结果);</span><br><span class="line">        dp[l][r] = ans;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<h1 id="题目">题目</h1>
 
-<h1 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h1>
     </div>
 
     
@@ -424,7 +424,7 @@
       <i class="fa fa-chart-line"></i>
     </span>
       <span>站点总字数：</span>
-    <span title="站点总字数">99k</span>
+    <span title="站点总字数">92k</span>
   </span>
 </div>
 <div class="busuanzi-count">

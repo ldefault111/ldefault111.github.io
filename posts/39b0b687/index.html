@@ -136,7 +136,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%89%8D%E7%BD%AE"><span class="nav-number">1.</span> <span class="nav-text">前置</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E9%85%8D%E7%BD%AEGit%E7%94%A8%E6%88%B7%E4%BF%A1%E6%81%AF"><span class="nav-number">2.</span> <span class="nav-text">配置Git用户信息</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E9%85%8D%E7%BD%AE%E5%AF%86%E9%92%A5"><span class="nav-number">3.</span> <span class="nav-text">配置密钥</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%88%9B%E5%BB%BA%E9%A1%B9%E7%9B%AE%E5%B9%B6%E8%BF%9E%E6%8E%A5"><span class="nav-number">4.</span> <span class="nav-text">创建项目并连接</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%B8%8A%E4%BC%A0%E9%A1%B9%E7%9B%AE"><span class="nav-number">5.</span> <span class="nav-text">上传项目</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%8B%B7%E8%B4%9D%E8%80%81%E9%A1%B9%E7%9B%AE%E5%88%B0%E8%87%AA%E5%B7%B1%E7%9A%84%E6%96%B0%E9%A1%B9%E7%9B%AE"><span class="nav-number">6.</span> <span class="nav-text">拷贝老项目到自己的新项目</span></a></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%89%8D%E7%BD%AE"><span class="nav-number">1.</span> <span class="nav-text">前置</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E9%85%8D%E7%BD%AEgit%E7%94%A8%E6%88%B7%E4%BF%A1%E6%81%AF"><span class="nav-number">2.</span> <span class="nav-text">配置Git用户信息</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E9%85%8D%E7%BD%AE%E5%AF%86%E9%92%A5"><span class="nav-number">3.</span> <span class="nav-text">配置密钥</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%88%9B%E5%BB%BA%E9%A1%B9%E7%9B%AE%E5%B9%B6%E8%BF%9E%E6%8E%A5"><span class="nav-number">4.</span> <span class="nav-text">创建项目并连接</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%B8%8A%E4%BC%A0%E9%A1%B9%E7%9B%AE"><span class="nav-number">5.</span> <span class="nav-text">上传项目</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%8B%B7%E8%B4%9D%E8%80%81%E9%A1%B9%E7%9B%AE%E5%88%B0%E8%87%AA%E5%B7%B1%E7%9A%84%E6%96%B0%E9%A1%B9%E7%9B%AE"><span class="nav-number">6.</span> <span class="nav-text">拷贝老项目到自己的新项目</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -295,7 +295,7 @@
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">本文字数：</span>
-      <span>1.2k</span>
+      <span>1.1k</span>
     </span>
     <span class="post-meta-item" title="阅读时长">
       <span class="post-meta-item-icon">
@@ -315,32 +315,30 @@
     <div class="post-body" itemprop="articleBody">
         <p>SSH连接Github上传项目的步骤</p>
 <span id="more"></span>
-
-<h1 id="前置"><a href="#前置" class="headerlink" title="前置"></a>前置</h1><p>Git的安装、Github的注册等这里不介绍了，以下内容要在git bash中完成（Windows系统），命令行就可以（Linux系统）</p>
-<h1 id="配置Git用户信息"><a href="#配置Git用户信息" class="headerlink" title="配置Git用户信息"></a>配置Git用户信息</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git config --global user.name <span class="string">&quot;Github账号用户名&quot;</span></span><br><span class="line">git config --global user.email Github账号邮箱</span><br></pre></td></tr></table></figure>
-
-<h1 id="配置密钥"><a href="#配置密钥" class="headerlink" title="配置密钥"></a>配置密钥</h1><p>输入以下指令：</p>
+<h1 id="前置">前置</h1>
+<p>Git的安装、Github的注册等这里不介绍了，以下内容要在git bash中完成（Windows系统），命令行就可以（Linux系统）</p>
+<h1 id="配置git用户信息">配置Git用户信息</h1>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git config --global user.name <span class="string">&quot;Github账号用户名&quot;</span></span><br><span class="line">git config --global user.email Github账号邮箱</span><br></pre></td></tr></table></figure>
+<h1 id="配置密钥">配置密钥</h1>
+<p>输入以下指令：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh-keygen -t rsa -b 4096 -C Github账号邮箱</span><br></pre></td></tr></table></figure>
-
 <p>如果需要修改密钥存放在系统中的位置，根据弹出内容修改即可，如果直接回车则存放在<code>~/.ssh</code>，公钥为<code>id_rsa.pub</code>，私钥为 <code>id_rsa</code></p>
 <p>（Linux系统）依次输入以下指令打开文件：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">eval</span> <span class="string">&quot;<span class="subst">$(ssh-agent -s)</span>&quot;</span></span><br><span class="line">ssh-add ~/.ssh/id_rsa</span><br><span class="line"><span class="built_in">cat</span> ~/.ssh/id_rsa.pub</span><br></pre></td></tr></table></figure>
-
 <p>（Windows系统）在<code>C:\user\xxx\.ssh\</code>中找到<code>id_rsa.pub</code>，打开文件：</p>
 <p>将文件中的内容复制下来，在Github个人信息的Setting里面，添加到SSH里就可以了</p>
-<h1 id="创建项目并连接"><a href="#创建项目并连接" class="headerlink" title="创建项目并连接"></a>创建项目并连接</h1><p>在<a target="_blank" rel="noopener" href="https://github.com/">Github</a>上创建新项目，复制下它的SSH连接（项目主页Code下拉里的），<code>git@github.com:xxx.git</code>，在你自己本地项目的文件夹里打开命令行（Windows下右键Git Bash）：</p>
+<h1 id="创建项目并连接">创建项目并连接</h1>
+<p>在<a target="_blank" rel="noopener" href="https://github.com/">Github</a>上创建新项目，复制下它的SSH连接（项目主页Code下拉里的），<code>git@github.com:xxx.git</code>，在你自己本地项目的文件夹里打开命令行（Windows下右键Git Bash）：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git init</span><br><span class="line">git remote add origin git@github.com:xxx.git</span><br></pre></td></tr></table></figure>
-
 <p>这时候输入<code>git remote -v</code>应该会显示下面两行：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">origin  git@github.com:用户名/项目名.git (fetch)</span><br><span class="line">origin  git@github.com:用户名/项目名.git (push)</span><br></pre></td></tr></table></figure>
-
 <p>即成功连接了</p>
-<h1 id="上传项目"><a href="#上传项目" class="headerlink" title="上传项目"></a>上传项目</h1><p>输入以下命令：</p>
+<h1 id="上传项目">上传项目</h1>
+<p>输入以下命令：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git add .</span><br><span class="line">git commit -m <span class="string">&quot;上传评论内容&quot;</span></span><br><span class="line">git push -u origin master</span><br></pre></td></tr></table></figure>
-
 <p>就完成上传项目了！</p>
-<h1 id="拷贝老项目到自己的新项目"><a href="#拷贝老项目到自己的新项目" class="headerlink" title="拷贝老项目到自己的新项目"></a>拷贝老项目到自己的新项目</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">clone</span> git@github.com:xxx.git</span><br><span class="line"><span class="built_in">cd</span> xxx</span><br><span class="line">git remote set-url --push origin git@github.com:yyy.git</span><br><span class="line">git init</span><br></pre></td></tr></table></figure>
-
+<h1 id="拷贝老项目到自己的新项目">拷贝老项目到自己的新项目</h1>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">clone</span> git@github.com:xxx.git</span><br><span class="line"><span class="built_in">cd</span> xxx</span><br><span class="line">git remote set-url --push origin git@github.com:yyy.git</span><br><span class="line">git init</span><br></pre></td></tr></table></figure>
 <p><code>xxx</code>是老项目，<code>yyy</code>自己的项目</p>
 <p>输入<code>git remote -v</code>，会出现一行以<code>(fetch)</code>结尾，一行以<code>(push)</code>结尾。如果在<code>set-url</code>之前，二者前面的github地址是一样的，而进行过上述最后一行代码后，二者就不一样了，fetch来自老项目，push来自新项目</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git checkout -b 本地分支名 origin/远程分支名</span><br></pre></td></tr></table></figure>
@@ -440,7 +438,7 @@
       <i class="fa fa-chart-line"></i>
     </span>
       <span>站点总字数：</span>
-    <span title="站点总字数">99k</span>
+    <span title="站点总字数">92k</span>
   </span>
 </div>
 <div class="busuanzi-count">

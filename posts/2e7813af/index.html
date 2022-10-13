@@ -299,7 +299,7 @@
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">本文字数：</span>
-      <span>503</span>
+      <span>465</span>
     </span>
     <span class="post-meta-item" title="阅读时长">
       <span class="post-meta-item-icon">
@@ -319,18 +319,22 @@
     <div class="post-body" itemprop="articleBody">
         <p>并查集是一种对父亲节点信息有记录的数据结构，常与图论结合</p>
 <span id="more"></span>
-
-<h1 id="模板"><a href="#模板" class="headerlink" title="模板"></a>模板</h1><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//初始化</span></span><br><span class="line"><span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;=n;i++) </span><br><span class="line">    fa[i]=i;</span><br><span class="line"></span><br><span class="line"><span class="comment">//查找</span></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">father</span><span class="params">(<span class="type">int</span> x)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> fa=fa[x]==x?x:<span class="built_in">father</span>(fa[x]);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//合并</span></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">unite</span><span class="params">(<span class="type">int</span> x,<span class="type">int</span> y)</span> </span>&#123;</span><br><span class="line">    fa[<span class="built_in">father</span>(x)]=<span class="built_in">father</span>(y);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h1 id="题型"><a href="#题型" class="headerlink" title="题型"></a>题型</h1><ul>
-<li><p>判断一共有几个根节点：循环一遍判断<code>father(i)</code> 是否等于$i$</p>
+<h1 id="模板">模板</h1>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//初始化</span></span><br><span class="line"><span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;=n;i++) </span><br><span class="line">    fa[i]=i;</span><br><span class="line"></span><br><span class="line"><span class="comment">//查找</span></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">father</span><span class="params">(<span class="type">int</span> x)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> fa=fa[x]==x?x:<span class="built_in">father</span>(fa[x]);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//合并</span></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">unite</span><span class="params">(<span class="type">int</span> x,<span class="type">int</span> y)</span> </span>&#123;</span><br><span class="line">    fa[<span class="built_in">father</span>(x)]=<span class="built_in">father</span>(y);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="题型">题型</h1>
+<ul>
+<li>
+<p>判断一共有几个根节点：循环一遍判断<code>father(i)</code> 是否等于<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>i</mi></mrow><annotation encoding="application/x-tex">i</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.65952em;vertical-align:0em;"></span><span class="mord mathdefault">i</span></span></span></span></p>
 </li>
-<li><p>特殊题型1：种类（关系）并查集：有几个种类就将数组开到几倍$n$ ，这样每一段$n$​ 个数组表示一个种类。注意：虚拟节点和真实节点，注意合并的顺序</p>
+<li>
+<p>特殊题型1：种类（关系）并查集：有几个种类就将数组开到几倍<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi></mrow><annotation encoding="application/x-tex">n</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">n</span></span></span></span> ，这样每一段<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi></mrow><annotation encoding="application/x-tex">n</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">n</span></span></span></span>​ 个数组表示一个种类。注意：虚拟节点和真实节点，注意合并的顺序</p>
 </li>
-<li><p>特殊题型2：并查集删边：可离线的情况下，倒序添加边。</p>
+<li>
+<p>特殊题型2：并查集删边：可离线的情况下，倒序添加边。</p>
 </li>
 </ul>
-<h1 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h1><p>洛谷P1892 团伙 种类并查集</p>
+<h1 id="题目">题目</h1>
+<p>洛谷P1892 团伙 种类并查集</p>
 <p>洛谷P1525 关押犯罪 种类并查集+贪心</p>
 <p>洛谷P1955 程序自动分析</p>
 <p>洛谷P3958 奶酪</p>
@@ -435,7 +439,7 @@
       <i class="fa fa-chart-line"></i>
     </span>
       <span>站点总字数：</span>
-    <span title="站点总字数">99k</span>
+    <span title="站点总字数">92k</span>
   </span>
 </div>
 <div class="busuanzi-count">

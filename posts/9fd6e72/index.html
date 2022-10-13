@@ -299,7 +299,7 @@
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">本文字数：</span>
-      <span>650</span>
+      <span>605</span>
     </span>
     <span class="post-meta-item" title="阅读时长">
       <span class="post-meta-item-icon">
@@ -317,44 +317,61 @@
     
     
     <div class="post-body" itemprop="articleBody">
-        <p>M. Cipriano et al., “Deep Segmentation of the Mandibular Canal: A New 3D Annotated Dataset of CBCT Volumes,” in IEEE Access, vol. 10, pp. 11500-11510, 2022, doi: 10.1109&#x2F;ACCESS.2022.3144840.</p>
+        <p>M. Cipriano et al., “Deep Segmentation of the Mandibular Canal: A New 3D Annotated Dataset of CBCT Volumes,” in IEEE Access, vol. 10, pp. 11500-11510, 2022, doi: 10.1109/ACCESS.2022.3144840.</p>
 <p>提出一个开源的CBCT下颌管分割所用数据集</p>
 <span id="more"></span>
-
-<h1 id="创新点"><a href="#创新点" class="headerlink" title="创新点"></a>创新点</h1><ul>
-<li><p>首次公开发布CBCT (Cone Beam Computed Tomography) 3D数据集，专业制作3D注释;</p>
+<h1 id="创新点">创新点</h1>
+<ul>
+<li>
+<p>首次公开发布CBCT (Cone Beam Computed Tomography) 3D数据集，专业制作3D注释;</p>
 </li>
-<li><p>使用新训练的深度学习架构，提高了最先进的下颌管分割精度;</p>
+<li>
+<p>使用新训练的深度学习架构，提高了最先进的下颌管分割精度;</p>
 </li>
-<li><p>开源</p>
-</li>
-</ul>
-<h1 id="数据"><a href="#数据" class="headerlink" title="数据"></a>数据</h1><ul>
-<li><p>347份</p>
-</li>
-<li><p>91份密集+稀疏标注，其余稀疏标注</p>
-</li>
-<li><p>数据这段写的有点复杂，大概感觉意思是说以前生成的那种方法标注不准确，但是现有的这个方法没太看懂</p>
-</li>
-<li><p>手绘生成的点集密集、锯齿状，由此重构$\alpha$-shape polygon mesh（引文32）（图9）</p>
-</li>
-<li><p>mesh不能用作CNN的ground truth segmentation mask，所以进行体素化</p>
-</li>
-<li><p>体素化结果为a binary raster volume，引文33中有写某些方法（更像是过程的方法）</p>
+<li>
+<p>开源</p>
 </li>
 </ul>
-<h1 id="模型"><a href="#模型" class="headerlink" title="模型"></a>模型</h1><ul>
-<li><p>引文28</p>
+<h1 id="数据">数据</h1>
+<ul>
+<li>
+<p>347份</p>
 </li>
-<li><p>基于UNet</p>
+<li>
+<p>91份密集+稀疏标注，其余稀疏标注</p>
+</li>
+<li>
+<p>数据这段写的有点复杂，大概感觉意思是说以前生成的那种方法标注不准确，但是现有的这个方法没太看懂</p>
+</li>
+<li>
+<p>手绘生成的点集密集、锯齿状，由此重构<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>α</mi></mrow><annotation encoding="application/x-tex">\alpha</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.0037em;">α</span></span></span></span>-shape polygon mesh（引文32）（图9）</p>
+</li>
+<li>
+<p>mesh不能用作CNN的ground truth segmentation mask，所以进行体素化</p>
+</li>
+<li>
+<p>体素化结果为a binary raster volume，引文33中有写某些方法（更像是过程的方法）</p>
 </li>
 </ul>
-<h1 id="结论"><a href="#结论" class="headerlink" title="结论"></a>结论</h1><ul>
-<li><p>实验一：在密集注释数据上训练的模型在Dice分数上提高了20%</p>
+<h1 id="模型">模型</h1>
+<ul>
+<li>
+<p>引文28</p>
 </li>
-<li><p>实验二：使用大型稀疏注释数据集获得的最佳结果无法达到使用小得多的体素级标记数据集获得的性能。</p>
+<li>
+<p>基于UNet</p>
 </li>
-<li><p>圆扩展技术对于深度学习算法是有用的，但是基于错误的假设</p>
+</ul>
+<h1 id="结论">结论</h1>
+<ul>
+<li>
+<p>实验一：在密集注释数据上训练的模型在Dice分数上提高了20%</p>
+</li>
+<li>
+<p>实验二：使用大型稀疏注释数据集获得的最佳结果无法达到使用小得多的体素级标记数据集获得的性能。</p>
+</li>
+<li>
+<p>圆扩展技术对于深度学习算法是有用的，但是基于错误的假设</p>
 </li>
 </ul>
 
@@ -455,7 +472,7 @@
       <i class="fa fa-chart-line"></i>
     </span>
       <span>站点总字数：</span>
-    <span title="站点总字数">99k</span>
+    <span title="站点总字数">92k</span>
   </span>
 </div>
 <div class="busuanzi-count">
