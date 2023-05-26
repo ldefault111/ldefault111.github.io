@@ -151,18 +151,18 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">93</span>
+          <span class="site-state-item-count">94</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
           <a href="/categories/">
-        <span class="site-state-item-count">18</span>
+        <span class="site-state-item-count">17</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">52</span>
+        <span class="site-state-item-count">51</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -311,7 +311,7 @@
 <p>之后重启电脑，WSL就成功激活了</p>
 <h2 id="安装发行版操作系统">安装发行版操作系统</h2>
 <p>打开Microsoft Store，查找想要的操作系统，比如搜索Ubuntu，如下图：</p>
-<img data-src="/posts/973e27dc/ubuntu.jpg" class="" title="ubuntu">
+<img data-src="/blog/posts/973e27dc/ubuntu.jpg" class="" title="ubuntu">
 <p>选择自己想要的发行版操作系统安装，安装后打开，依提示设置用户名、密码即可开始使用</p>
 <h2 id="换源">换源</h2>
 <p>官方软件源有时访问很慢，我们更换成清华源，依次执行以下命令（备份原本的安装源、编辑新的安装源）：</p>
@@ -325,7 +325,7 @@
 <p>从Microsoft Store安装的话直接安装在了C盘，但是随着使用可能C盘空间会爆炸，考虑迁移到其他盘。</p>
 <h2 id="关闭wsl并查看列表">关闭WSL并查看列表</h2>
 <p>在管理员Powershell，使用<code>wsl --shutdown</code>关闭，输入<code>wsl --list --all -v</code>查看当前所有的子系统，我只安装了一个Ubuntu20.04，效果如图：</p>
-<img data-src="/posts/973e27dc/wsl.jpg" class="" title="wsl">
+<img data-src="/blog/posts/973e27dc/wsl.jpg" class="" title="wsl">
 <h2 id="导出备份">导出备份</h2>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wsl --<span class="built_in">export</span> 子系统 备份包的存放路径</span><br></pre></td></tr></table></figure>
 <p>子系统就是列表的NAME，选择你需要迁移的子系统；备份包的存放路径注意要写成…/xxx.tar的形式，xxx是你给备份包的命名，这里网上很多教程没有指明必须要有.tar后缀</p>
@@ -439,7 +439,7 @@
       <i class="fa fa-chart-line"></i>
     </span>
       <span>站点总字数：</span>
-    <span title="站点总字数">251k</span>
+    <span title="站点总字数">274k</span>
   </span>
 </div>
 <div class="busuanzi-count">

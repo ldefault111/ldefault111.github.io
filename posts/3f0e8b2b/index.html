@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 6.3.0">
+
+<link rel="preconnect" href="https://lib.baomitu.com" crossorigin>
+<link rel="preconnect" href="lib.baomitu.com" crossorigin>
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+  <meta name="msvalidate.01" content="4DE41AB378B03D751B278232D142074A">
+  <meta name="baidu-site-verification" content="code-BIpyo98GuV">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="https://lib.baomitu.com/css?family=consolas:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+
+<link rel="stylesheet" href="https://lib.baomitu.com/font-awesome/6.1.1/css/all.min.css" integrity="sha256-DfWjNxDkM94fVBWx1H5BMMp0Zq7luBlV8QRcSES7s+0=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://lib.baomitu.com/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"lyroch.site","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.11.0","exturl":false,"sidebar":{"position":"left","width":210,"display":"post","padding":18,"offset":30},"copycode":true,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":true,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":true,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.json","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+
+
+
+<link rel="canonical" href="https://lyroch.site/posts/3f0e8b2b/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://lyroch.site/posts/3f0e8b2b/","path":"posts/3f0e8b2b/","title":"【MIT 6.S081】Lab5: Copy on-write"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>【MIT 6.S081】Lab5: Copy on-write | default111</title>
+  
+
+  <script src="/js/third-party/analytics/baidu-analytics.js"></script>
+  <script async src="https://hm.baidu.com/hm.js?4153420f060a95b406405cc219f4ce4d"></script>
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<link href="https://cdn.bootcss.com/KaTeX/0.11.1/katex.min.css" rel="stylesheet" /></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">default111</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-主页"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>主页</a></li><li class="menu-item menu-item-关于"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-标签"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-分类"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li><li class="menu-item menu-item-归档"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li><li class="menu-item menu-item-电影"><a href="/movies/" rel="section"><i class="fa fa-film fa-fw"></i>电影</a></li><li class="menu-item menu-item-读书"><a href="/books/" rel="section"><i class="fa fa-book fa-fw"></i>读书</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%89%8D%E7%BD%AE"><span class="nav-number">1.</span> <span class="nav-text">前置</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%A6%81%E6%B1%82"><span class="nav-number">2.</span> <span class="nav-text">要求</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%88%86%E6%9E%90"><span class="nav-number">3.</span> <span class="nav-text">分析</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#fork%E5%90%8E%E4%B8%8D%E5%88%86%E9%85%8D%E7%9B%B4%E6%8E%A5%E6%98%A0%E5%B0%84"><span class="nav-number">3.1.</span> <span class="nav-text">fork后不分配直接映射</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AF%86%E5%88%ABpage-fault"><span class="nav-number">3.2.</span> <span class="nav-text">识别page fault</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BC%95%E7%94%A8%E8%AE%A1%E6%95%B0%E7%9A%84%E8%AE%BE%E8%AE%A1"><span class="nav-number">3.3.</span> <span class="nav-text">引用计数的设计</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%86%85%E6%A0%B8%E6%80%81%E7%9A%84cow"><span class="nav-number">3.4.</span> <span class="nav-text">内核态的COW</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%87%BD%E6%95%B0%E5%AE%9A%E4%B9%89%E8%A1%A5%E5%85%85"><span class="nav-number">3.5.</span> <span class="nav-text">函数定义补充</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%87%8D%E5%A4%8D%E6%98%A0%E5%B0%84%E5%88%A4%E6%96%AD%E7%9A%84%E4%BF%AE%E6%94%B9"><span class="nav-number">3.6.</span> <span class="nav-text">重复映射判断的修改</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%AE%9E%E7%8E%B0"><span class="nav-number">4.</span> <span class="nav-text">实现</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%B5%8B%E8%AF%95"><span class="nav-number">5.</span> <span class="nav-text">测试</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="default111"
+      src="/images/avatar.png">
+  <p class="site-author-name" itemprop="name">default111</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">94</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">17</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">51</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/ldefault111" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;ldefault111" rel="noopener" target="_blank"><i class="fa fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://blog.csdn.net/default012?spm=1010.2135.3001.5421" title="CSDN → https:&#x2F;&#x2F;blog.csdn.net&#x2F;default012?spm&#x3D;1010.2135.3001.5421" rel="noopener" target="_blank"><i class="fa fa-book fa-fw"></i>CSDN</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://codeforces.com/profile/default111" title="Codeforces → https:&#x2F;&#x2F;codeforces.com&#x2F;profile&#x2F;default111" rel="noopener" target="_blank"><i class="fa fa-bar-chart fa-fw"></i>Codeforces</a>
+      </span>
+  </div>
+  <div class="cc-license site-overview-item animated" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="https://lib.baomitu.com/creativecommons-vocabulary/2020.11.3/assets/license_badges/small/by_nc_sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+  <div class="links-of-blogroll site-overview-item animated">
+    <div class="links-of-blogroll-title"><i class="fa fa-globe fa-fw"></i>
+      友情链接
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="https://blog.csdn.net/default012?spm=1010.2135.3001.5421" title="https:&#x2F;&#x2F;blog.csdn.net&#x2F;default012?spm&#x3D;1010.2135.3001.5421" rel="noopener" target="_blank">default111（测试）</a>
+        </li>
+    </ul>
+  </div>
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+  <a href="https://github.com/ldefault111" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://lyroch.site/posts/3f0e8b2b/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="default111">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="default111">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="【MIT 6.S081】Lab5: Copy on-write | default111">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          【MIT 6.S081】Lab5: Copy on-write
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2023-05-08 00:32:57" itemprop="dateModified" datetime="2023-05-08T00:32:57+08:00">2023-05-08</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" itemprop="url" rel="index"><span itemprop="name">操作系统</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>10k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>9 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <p>MIT 6.S081的<a target="_blank" rel="noopener" href="https://pdos.csail.mit.edu/6.828/2021/labs/cow.html">Lab 5: Copy-on-Write Fork for xv6</a>题解</p>
+<span id="more"></span>
+<h1 id="前置">前置</h1>
+<p>内核可以通过将 PTE 标记为无效或只读来截获内存引用，导致页面错误， 并且可以通过修改 PTE 来更改地址的含义。</p>
+<p>为优化内存，比如父进程fork后复制可能需大量时间，但子进程不一定用，很可能浪费了，只有在父/子进程需要写内容时才需要各自一个单独的page，否则都可以共享。</p>
+<p>COW fork（） 只为子项创建一个分页表，为用户提供 PTE 指向父级物理页的内存，标记父子的PTE只读。因需要写page fault时，内核复制并分配新page，标记为可写。物理页面需要引用计数，没有引用时才可释放。</p>
+<h1 id="要求">要求</h1>
+<p>实现copy-on-write fork。</p>
+<p>计划：</p>
+<ul>
+<li>修改<code>kernel/vm.c</code>中的<code>uvmcopy</code>使其不分配新物理内存而是映射到原本的页表。</li>
+<li>修改<code>kernel/trap.c</code>中的<code>usertrap</code>使其识别page fault，用<code>kalloc</code>分配新内存，复制page，设PTE可写。</li>
+<li>在<code>kalloc</code>时更新引用计数， <code>kfree()</code> 将page放在free list中但只有引用计数为<code>0</code>才正式释放。可以将这些计数放在一个固定大小的数组里，找一个方法让page能找到数组下标，比如模数，give the array a number of elements equal to highest physical address of any page placed on the free list by <code>kinit()</code> in kalloc.c.（没看懂？）</li>
+<li><code>kernel/vm.c</code>中的<code>copyout</code>也需要为引用计数修改。</li>
+</ul>
+<p>提示：</p>
+<ul>
+<li>PTE最后两位RSW保留给supervisor software（内核），将bit8标识为当前是一个copy-on-write page。</li>
+<li>pagetable的很多define在 <code>kernel/riscv.h</code></li>
+<li>COW的page fault，如果没有内存可分配，进程应该kill了。</li>
+</ul>
+<h1 id="分析">分析</h1>
+<h2 id="fork后不分配直接映射">fork后不分配直接映射</h2>
+<p><code>fork()</code>调用<code>uvmcopy</code>复制page，在<code>uvmcopy</code>中首先删除父进程的可写位，并设置第8位（在<code>riscv.h</code>中define一个），之后分配内存的部分全部删掉，将映射<code>mappages</code>中的新内存<code>mem</code>改成已有的<code>pa</code>就行了。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// kernel/riscv.h</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> PTE_C (1L &lt;&lt; 7)</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// kernel/vm.c</span></span><br><span class="line"><span class="type">int</span></span><br><span class="line"><span class="title function_">uvmcopy</span><span class="params">(<span class="type">pagetable_t</span> old, <span class="type">pagetable_t</span> new, uint64 sz)</span></span><br><span class="line">&#123;</span><br><span class="line">  ...</span><br><span class="line">  <span class="keyword">for</span>(i = <span class="number">0</span>; i &lt; sz; i += PGSIZE)&#123;</span><br><span class="line">    ...</span><br><span class="line">    pa = PTE2PA(*pte);</span><br><span class="line">    <span class="comment">// modify father</span></span><br><span class="line">    *pte = *pte&amp;(~PTE_W)|PTE_C;</span><br><span class="line">    flags = PTE_FLAGS(*pte);</span><br><span class="line">    <span class="comment">// if((mem = kalloc()) == 0)</span></span><br><span class="line">    <span class="comment">//   goto err;</span></span><br><span class="line">    <span class="comment">// memmove(mem, (char*)pa, PGSIZE);</span></span><br><span class="line">    <span class="comment">// if(mappages(new, i, PGSIZE, (uint64)mem, flags) != 0)&#123;</span></span><br><span class="line">    <span class="keyword">if</span>(mappages(new, i, PGSIZE, pa, flags) != <span class="number">0</span>)&#123;</span><br><span class="line">      <span class="comment">// kfree(mem);</span></span><br><span class="line">      <span class="keyword">goto</span> err;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 这里在引用计数设计后补上</span></span><br><span class="line">    addref((<span class="type">void</span> *)pa);</span><br><span class="line">  &#125;</span><br><span class="line">  ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="识别page-fault">识别page fault</h2>
+<p>在<code>usertrap</code>中增加page fault的处理，根据文档：</p>
+<img data-src="/blog/posts/3f0e8b2b/assets/-MHZoT2b_bcLghjAOPsJ/-MMD_TK8Ar4GqWE6xfWV/-MMNmVfRDZSAOKze10lZ/image-16815773560073.png" class="" title="img">
+<p>应当是在<code>r_scause() == 15 </code>时是因为page fault而trap的（其他的page fault不是复制这些操作），所以在这里复制原映射的page给当前进程，注意判断是否是COW的page fault，剩下就是普通的复制页面，可参考原本的<code>uvmcopy</code>：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span>(r_scause() == <span class="number">15</span>) &#123;</span><br><span class="line">    uint64 va = PGROUNDDOWN(r_stval());</span><br><span class="line">    <span class="keyword">if</span>(va &gt;= MAXVA || va &gt; p-&gt;sz) </span><br><span class="line">      <span class="keyword">goto</span> err;</span><br><span class="line">    <span class="type">pte_t</span> *pte;</span><br><span class="line">    pte = walk(p-&gt;pagetable, va, <span class="number">0</span>);</span><br><span class="line">    <span class="keyword">if</span>(pte &amp;&amp; (*pte &amp; PTE_C)) &#123;</span><br><span class="line">      <span class="type">char</span> *mem;</span><br><span class="line">      <span class="keyword">if</span>((mem = kalloc()) == <span class="number">0</span>)</span><br><span class="line">        <span class="keyword">goto</span> err;</span><br><span class="line">      <span class="built_in">memset</span>(mem, <span class="number">0</span>, PGSIZE);</span><br><span class="line">      uint64 pa = walkaddr(p-&gt;pagetable, va);</span><br><span class="line">      <span class="keyword">if</span>(pa == <span class="number">0</span>) </span><br><span class="line">        <span class="keyword">goto</span> err;</span><br><span class="line">      memmove(mem, (<span class="type">char</span>*)pa, PGSIZE);</span><br><span class="line">      <span class="type">int</span> flags = PTE_FLAGS(*pte);</span><br><span class="line">      <span class="comment">// write and not COW</span></span><br><span class="line">      flags = (flags | PTE_W) &amp; (~PTE_C);</span><br><span class="line">      <span class="keyword">if</span>(mappages(p-&gt;pagetable, va, PGSIZE, (uint64)mem, flags) != <span class="number">0</span>)&#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;usertrap: COW can&#x27;t map new page&quot;</span>);</span><br><span class="line">        kfree(mem);</span><br><span class="line">        <span class="keyword">goto</span> err;</span><br><span class="line">      &#125;</span><br><span class="line">      kfree((<span class="type">void</span>* )pa);</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      <span class="built_in">printf</span>(<span class="string">&quot;usertrap: not COW page fault&quot;</span>);</span><br><span class="line">      err:</span><br><span class="line">        p-&gt;killed = <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">goto</span> end;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">...</span><br><span class="line">  end:</span><br><span class="line">  <span class="keyword">if</span>(p-&gt;killed)</span><br><span class="line">    <span class="built_in">exit</span>(<span class="number">-1</span>);</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+<h2 id="引用计数的设计">引用计数的设计</h2>
+<p>剩下的部分是关于引用计数的，设计要非常精巧（/(ㄒoㄒ)/~~）。</p>
+<p>注意这里涉及到可能多个进程改一个引用计数，要加锁，至于数组的大小，从<code>kinit</code>找到了一些奇怪的define的数，点进去发现<code>kernel/memlayout.h</code>中有这样一段：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// the kernel expects there to be RAM</span></span><br><span class="line"><span class="comment">// for use by the kernel and user pages</span></span><br><span class="line"><span class="comment">// from physical address 0x80000000 to PHYSTOP.</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> KERNBASE 0x80000000L</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> PHYSTOP (KERNBASE + 128*1024*1024)</span></span><br></pre></td></tr></table></figure>
+<p>所以页表的个数就是<code>128*1024*1024/PGSIZE</code>，index就是第几块，<code>(位置-KERNBASE)/PGSIZE</code>就可算：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">page_ref</span>&#123;</span></span><br><span class="line">  <span class="class"><span class="keyword">struct</span> <span class="title">spinlock</span> <span class="title">lock</span>;</span></span><br><span class="line">  <span class="type">int</span> num;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> PGNUM 128*1024*1024/PGSIZE</span></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">page_ref</span> <span class="title">page_ref</span>[<span class="title">PGNUM</span>];</span></span><br><span class="line"><span class="type">int</span></span><br><span class="line"><span class="title function_">getrefindex</span><span class="params">(<span class="type">void</span> *pa)</span></span><br><span class="line">&#123;</span><br><span class="line">  <span class="keyword">return</span> ((uint64)pa-KERNBASE)/PGSIZE;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>在<code>freerange</code>中一起初始化，注意<code>kfree</code>了所以计数先设为<code>1</code>：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">void</span></span><br><span class="line"><span class="title function_">freerange</span><span class="params">(<span class="type">void</span> *pa_start, <span class="type">void</span> *pa_end)</span></span><br><span class="line">&#123;</span><br><span class="line">  <span class="type">char</span> *p;</span><br><span class="line">  p = (<span class="type">char</span>*)PGROUNDUP((uint64)pa_start);</span><br><span class="line">  <span class="keyword">for</span>(; p + PGSIZE &lt;= (<span class="type">char</span>*)pa_end; p += PGSIZE) &#123;</span><br><span class="line">    initlock(&amp;(page_ref[getrefindex((<span class="type">void</span> *)p)].lock), <span class="string">&quot;page_ref&quot;</span>);</span><br><span class="line">    page_ref[getrefindex(p)].num = <span class="number">1</span>;</span><br><span class="line">    kfree(p);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>写一个加引用计数和设置引用计数为<code>1</code>的函数，不需要写减法因为减的时候可能涉及到释放内存，有并行的风险（先减再读，两步必须在一个锁里）：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">void</span></span><br><span class="line"><span class="title function_">addref</span><span class="params">(<span class="type">void</span> *pa)</span></span><br><span class="line">&#123;</span><br><span class="line">  uint64 index = getrefindex(pa);</span><br><span class="line">  acquire(&amp;page_ref[index].lock);</span><br><span class="line">  page_ref[index].num++;</span><br><span class="line">  release(&amp;page_ref[index].lock);</span><br><span class="line">&#125;</span><br><span class="line"><span class="type">void</span></span><br><span class="line"><span class="title function_">setref</span><span class="params">(<span class="type">void</span> *pa)</span></span><br><span class="line">&#123;</span><br><span class="line">  uint64 index = getrefindex(pa);</span><br><span class="line">  acquire(&amp;page_ref[index].lock);</span><br><span class="line">  page_ref[index].num = <span class="number">1</span>;</span><br><span class="line">  release(&amp;page_ref[index].lock);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>先改<code>kalloc</code>，在分配过内存后调用一个上述<code>updateref</code>即可：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">void</span> *</span><br><span class="line"><span class="title function_">kalloc</span><span class="params">(<span class="type">void</span>)</span></span><br><span class="line">&#123;</span><br><span class="line">  ...</span><br><span class="line">  <span class="keyword">if</span>(r) &#123;</span><br><span class="line">    <span class="built_in">memset</span>((<span class="type">char</span>*)r, <span class="number">5</span>, PGSIZE); <span class="comment">// fill with junk</span></span><br><span class="line">    setref((<span class="type">void</span>*)r);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> (<span class="type">void</span>*)r;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>再改<code>kfree</code>，计数减少前先检验是否已经为<code>0</code>（报panic），之后加锁，修改后检查计数值，如果为<code>0</code>则按原来代码释放内存，最后释放锁。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">void</span></span><br><span class="line"><span class="title function_">kfree</span><span class="params">(<span class="type">void</span> *pa)</span></span><br><span class="line">&#123;</span><br><span class="line">  <span class="class"><span class="keyword">struct</span> <span class="title">run</span> *<span class="title">r</span>;</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span>(((uint64)pa % PGSIZE) != <span class="number">0</span> || (<span class="type">char</span>*)pa &lt; end || (uint64)pa &gt;= PHYSTOP)</span><br><span class="line">    panic(<span class="string">&quot;kfree&quot;</span>);</span><br><span class="line">  </span><br><span class="line">  uint64 index = getrefindex(pa);</span><br><span class="line">  acquire(&amp;page_ref[index].lock);</span><br><span class="line">  page_ref[index].num--;</span><br><span class="line">  <span class="keyword">if</span>(page_ref[index].num == <span class="number">0</span>) &#123;</span><br><span class="line">    <span class="comment">// Fill with junk to catch dangling refs.</span></span><br><span class="line">    <span class="built_in">memset</span>(pa, <span class="number">1</span>, PGSIZE);</span><br><span class="line"></span><br><span class="line">    r = (<span class="keyword">struct</span> run*)pa;</span><br><span class="line"></span><br><span class="line">    acquire(&amp;kmem.lock);</span><br><span class="line">    r-&gt;next = kmem.freelist;</span><br><span class="line">    kmem.freelist = r;</span><br><span class="line">    release(&amp;kmem.lock);</span><br><span class="line">  &#125;</span><br><span class="line">  release(&amp;page_ref[index].lock);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这里有个细节，是在读网上的博客看到的，如果引用计数的减少写在<code>kfree</code>里是最方便的，因为原本的代码中<code>kfree</code>包括了映射变更后的释放，如果引用计数减少写在每个映射改动的地方会很多很麻烦。</p>
+<h2 id="内核态的cow">内核态的COW</h2>
+<p>内核态复制页面COW在<code>copyout</code>中，与<code>usertrap</code>基本一致：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span></span><br><span class="line"><span class="title function_">copyout</span><span class="params">(<span class="type">pagetable_t</span> pagetable, uint64 dstva, <span class="type">char</span> *src, uint64 len)</span></span><br><span class="line">&#123;</span><br><span class="line">  uint64 n, va0, pa0;</span><br><span class="line">  <span class="type">pte_t</span> *pte;</span><br><span class="line">  <span class="keyword">while</span>(len &gt; <span class="number">0</span>)&#123;</span><br><span class="line">    va0 = PGROUNDDOWN(dstva);</span><br><span class="line">    <span class="keyword">if</span>(va0 &gt;= MAXVA) </span><br><span class="line">      <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">    pte = walk(pagetable, va0, <span class="number">0</span>);</span><br><span class="line">    <span class="keyword">if</span>(pte &amp;&amp; (*pte &amp; PTE_C)) &#123;</span><br><span class="line">      <span class="type">char</span> *mem;</span><br><span class="line">      <span class="keyword">if</span>((mem = kalloc()) == <span class="number">0</span>) &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;copyout: kalloc failed\n&quot;</span>);</span><br><span class="line">        <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="built_in">memset</span>(mem, <span class="number">0</span>, <span class="keyword">sizeof</span>(mem));</span><br><span class="line">      uint64 pa = walkaddr(pagetable, va0);</span><br><span class="line">      <span class="keyword">if</span>(pa) &#123;</span><br><span class="line">        memmove(mem, (<span class="type">char</span>*)pa, PGSIZE);</span><br><span class="line">        <span class="type">int</span> flags = PTE_FLAGS(*pte);</span><br><span class="line">        <span class="comment">// write and not COW</span></span><br><span class="line">        flags = (flags | PTE_W) &amp; (~PTE_C);</span><br><span class="line">        <span class="keyword">if</span>(mappages(pagetable, va0, PGSIZE, (uint64)mem, flags) != <span class="number">0</span>)&#123;</span><br><span class="line">          <span class="built_in">printf</span>(<span class="string">&quot;copyout: COW can&#x27;t map new page&quot;</span>);</span><br><span class="line">          kfree(mem);</span><br><span class="line">          <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        kfree((<span class="type">void</span>*)pa);</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    pa0 = walkaddr(pagetable, va0);</span><br><span class="line">    <span class="keyword">if</span>(pa0 == <span class="number">0</span>)</span><br><span class="line">      <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">    n = PGSIZE - (dstva - va0);</span><br><span class="line">    <span class="keyword">if</span>(n &gt; len)</span><br><span class="line">      n = len;</span><br><span class="line">    memmove((<span class="type">void</span> *)(pa0 + (dstva - va0)), src, n);</span><br><span class="line"></span><br><span class="line">    len -= n;</span><br><span class="line">    src += n;</span><br><span class="line">    dstva = va0 + PGSIZE;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="函数定义补充">函数定义补充</h2>
+<p>使用的函数添加到<code>kernel/def.h</code>：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// kalloc.c</span></span><br><span class="line">...</span><br><span class="line"><span class="type">void</span>            <span class="title function_">addref</span><span class="params">(<span class="type">void</span> *)</span>;</span><br><span class="line">...</span><br><span class="line"><span class="comment">// vm.c</span></span><br><span class="line">...</span><br><span class="line"><span class="type">pte_t</span> *         <span class="title function_">walk</span><span class="params">(<span class="type">pagetable_t</span>, uint64, <span class="type">int</span>)</span>;</span><br></pre></td></tr></table></figure>
+<h2 id="重复映射判断的修改">重复映射判断的修改</h2>
+<p>上面代码写完如果直接跑会报panic: mappages: remap，因为重复映射时原本会报错，但现在如果发现page有标记<code>PTE_C</code>就可以不报错，在<code>mappages()</code>中修改：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span></span><br><span class="line"><span class="title function_">mappages</span><span class="params">(<span class="type">pagetable_t</span> pagetable, uint64 va, uint64 size, uint64 pa, <span class="type">int</span> perm)</span></span><br><span class="line">&#123;</span><br><span class="line">  ...</span><br><span class="line">    <span class="keyword">if</span>((*pte &amp; PTE_C) == <span class="number">0</span> &amp;&amp; (*pte &amp; PTE_V))</span><br><span class="line">      panic(<span class="string">&quot;mappages: remap&quot;</span>);</span><br><span class="line">  ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="实现">实现</h1>
+<p>以下文件都在kernel中，所以不写一级目录了。</p>
+<p><code>def.h</code>：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// kalloc.c</span></span><br><span class="line">...</span><br><span class="line"><span class="type">void</span>            <span class="title function_">addref</span><span class="params">(<span class="type">void</span> *)</span>;</span><br><span class="line">...</span><br><span class="line"><span class="comment">// vm.c</span></span><br><span class="line">...</span><br><span class="line"><span class="type">pte_t</span> *         <span class="title function_">walk</span><span class="params">(<span class="type">pagetable_t</span>, uint64, <span class="type">int</span>)</span>;</span><br></pre></td></tr></table></figure>
+<p><code>kalloc.c</code></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">page_ref</span>&#123;</span></span><br><span class="line">  <span class="class"><span class="keyword">struct</span> <span class="title">spinlock</span> <span class="title">lock</span>;</span></span><br><span class="line">  <span class="type">int</span> num;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> PGNUM 128*1024*1024/PGSIZE</span></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">page_ref</span> <span class="title">page_ref</span>[<span class="title">PGNUM</span>];</span></span><br><span class="line">uint64</span><br><span class="line"><span class="title function_">getrefindex</span><span class="params">(<span class="type">void</span> *pa)</span></span><br><span class="line">&#123;</span><br><span class="line">  <span class="keyword">return</span> ((uint64)pa-KERNBASE)/PGSIZE;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">void</span></span><br><span class="line"><span class="title function_">addref</span><span class="params">(<span class="type">void</span> *pa)</span></span><br><span class="line">&#123;</span><br><span class="line">  uint64 index = getrefindex(pa);</span><br><span class="line">  acquire(&amp;page_ref[index].lock);</span><br><span class="line">  page_ref[index].num++;</span><br><span class="line">  release(&amp;page_ref[index].lock);</span><br><span class="line">&#125;</span><br><span class="line"><span class="type">void</span></span><br><span class="line"><span class="title function_">setref</span><span class="params">(<span class="type">void</span> *pa)</span></span><br><span class="line">&#123;</span><br><span class="line">  uint64 index = getrefindex(pa);</span><br><span class="line">  acquire(&amp;page_ref[index].lock);</span><br><span class="line">  page_ref[index].num = <span class="number">1</span>;</span><br><span class="line">  release(&amp;page_ref[index].lock);</span><br><span class="line">&#125;</span><br><span class="line">...</span><br><span class="line"><span class="type">void</span></span><br><span class="line"><span class="title function_">freerange</span><span class="params">(<span class="type">void</span> *pa_start, <span class="type">void</span> *pa_end)</span></span><br><span class="line">&#123;</span><br><span class="line">  <span class="type">char</span> *p;</span><br><span class="line">  p = (<span class="type">char</span>*)PGROUNDUP((uint64)pa_start);</span><br><span class="line">  <span class="keyword">for</span>(; p + PGSIZE &lt;= (<span class="type">char</span>*)pa_end; p += PGSIZE) &#123;</span><br><span class="line">    initlock(&amp;(page_ref[getrefindex((<span class="type">void</span> *)p)].lock), <span class="string">&quot;page_ref&quot;</span>);</span><br><span class="line">    page_ref[getrefindex(p)].num = <span class="number">1</span>;</span><br><span class="line">    kfree(p);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">...</span><br><span class="line"><span class="type">void</span></span><br><span class="line"><span class="title function_">kfree</span><span class="params">(<span class="type">void</span> *pa)</span></span><br><span class="line">&#123;</span><br><span class="line">  <span class="class"><span class="keyword">struct</span> <span class="title">run</span> *<span class="title">r</span>;</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span>(((uint64)pa % PGSIZE) != <span class="number">0</span> || (<span class="type">char</span>*)pa &lt; end || (uint64)pa &gt;= PHYSTOP)</span><br><span class="line">    panic(<span class="string">&quot;kfree&quot;</span>);</span><br><span class="line">  </span><br><span class="line">  uint64 index = getrefindex(pa);</span><br><span class="line">  acquire(&amp;page_ref[index].lock);</span><br><span class="line">  page_ref[index].num--;</span><br><span class="line">  <span class="keyword">if</span>(page_ref[index].num == <span class="number">0</span>) &#123;</span><br><span class="line">    <span class="comment">// Fill with junk to catch dangling refs.</span></span><br><span class="line">    <span class="built_in">memset</span>(pa, <span class="number">1</span>, PGSIZE);</span><br><span class="line"></span><br><span class="line">    r = (<span class="keyword">struct</span> run*)pa;</span><br><span class="line"></span><br><span class="line">    acquire(&amp;kmem.lock);</span><br><span class="line">    r-&gt;next = kmem.freelist;</span><br><span class="line">    kmem.freelist = r;</span><br><span class="line">    release(&amp;kmem.lock);</span><br><span class="line">  &#125;</span><br><span class="line">  release(&amp;page_ref[index].lock);</span><br><span class="line">&#125;</span><br><span class="line"><span class="type">void</span> *</span><br><span class="line"><span class="title function_">kalloc</span><span class="params">(<span class="type">void</span>)</span></span><br><span class="line">&#123;</span><br><span class="line">  <span class="class"><span class="keyword">struct</span> <span class="title">run</span> *<span class="title">r</span>;</span></span><br><span class="line"></span><br><span class="line">  acquire(&amp;kmem.lock);</span><br><span class="line">  r = kmem.freelist;</span><br><span class="line">  <span class="keyword">if</span>(r)</span><br><span class="line">    kmem.freelist = r-&gt;next;</span><br><span class="line">  release(&amp;kmem.lock);</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span>(r) &#123;</span><br><span class="line">    <span class="built_in">memset</span>((<span class="type">char</span>*)r, <span class="number">5</span>, PGSIZE); <span class="comment">// fill with junk</span></span><br><span class="line">    setref((<span class="type">void</span>*)r);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> (<span class="type">void</span>*)r;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><code>riscv.h</code></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">define</span> PTE_C (1L &lt;&lt; 7)</span></span><br></pre></td></tr></table></figure>
+<p><code>trap.c</code></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line">...</span><br><span class="line"><span class="keyword">else</span> <span class="keyword">if</span>(r_scause() == <span class="number">15</span>) &#123;</span><br><span class="line">    uint64 va = PGROUNDDOWN(r_stval());</span><br><span class="line">    <span class="keyword">if</span>(va &gt;= MAXVA || va &gt; p-&gt;sz) </span><br><span class="line">      <span class="keyword">goto</span> err;</span><br><span class="line">    <span class="type">pte_t</span> *pte;</span><br><span class="line">    pte = walk(p-&gt;pagetable, va, <span class="number">0</span>);</span><br><span class="line">    <span class="keyword">if</span>(pte &amp;&amp; (*pte &amp; PTE_C)) &#123;</span><br><span class="line">      <span class="type">char</span> *mem;</span><br><span class="line">      <span class="keyword">if</span>((mem = kalloc()) == <span class="number">0</span>)</span><br><span class="line">        <span class="keyword">goto</span> err;</span><br><span class="line">      uint64 pa = walkaddr(p-&gt;pagetable, va);</span><br><span class="line">      <span class="keyword">if</span>(pa == <span class="number">0</span>) </span><br><span class="line">        <span class="keyword">goto</span> err;</span><br><span class="line">      memmove(mem, (<span class="type">char</span>*)pa, PGSIZE);</span><br><span class="line">      <span class="type">int</span> flags = PTE_FLAGS(*pte);</span><br><span class="line">      <span class="comment">// write and not COW</span></span><br><span class="line">      flags = (flags | PTE_W) &amp; (~PTE_C);</span><br><span class="line">      <span class="keyword">if</span>(mappages(p-&gt;pagetable, va, PGSIZE, (uint64)mem, flags) != <span class="number">0</span>)&#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;usertrap: COW can&#x27;t map new page&quot;</span>);</span><br><span class="line">        kfree(mem);</span><br><span class="line">        <span class="keyword">goto</span> err;</span><br><span class="line">      &#125;</span><br><span class="line">      kfree((<span class="type">void</span>* )pa);</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      <span class="built_in">printf</span>(<span class="string">&quot;usertrap: not COW page fault&quot;</span>);</span><br><span class="line">      err:</span><br><span class="line">        p-&gt;killed = <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">goto</span> end;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125; <span class="keyword">else</span> <span class="keyword">if</span>((which_dev = devintr()) != <span class="number">0</span>)&#123;</span><br><span class="line">    <span class="comment">// ok</span></span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;usertrap(): unexpected scause %p pid=%d\n&quot;</span>, r_scause(), p-&gt;pid);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;            sepc=%p stval=%p\n&quot;</span>, r_sepc(), r_stval());</span><br><span class="line">    p-&gt;killed = <span class="number">1</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  end:</span><br><span class="line">  <span class="keyword">if</span>(p-&gt;killed)</span><br><span class="line">    <span class="built_in">exit</span>(<span class="number">-1</span>);</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+<p><code>vm.c</code></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span></span><br><span class="line"><span class="title function_">mappages</span><span class="params">(<span class="type">pagetable_t</span> pagetable, uint64 va, uint64 size, uint64 pa, <span class="type">int</span> perm)</span></span><br><span class="line">&#123;</span><br><span class="line">  ...</span><br><span class="line">    <span class="keyword">if</span>((*pte &amp; PTE_C) == <span class="number">0</span> &amp;&amp; (*pte &amp; PTE_V))</span><br><span class="line">      panic(<span class="string">&quot;mappages: remap&quot;</span>);</span><br><span class="line">  ...</span><br><span class="line">&#125;</span><br><span class="line"><span class="type">int</span></span><br><span class="line"><span class="title function_">uvmcopy</span><span class="params">(<span class="type">pagetable_t</span> old, <span class="type">pagetable_t</span> new, uint64 sz)</span></span><br><span class="line">&#123;</span><br><span class="line">  <span class="type">pte_t</span> *pte;</span><br><span class="line">  uint64 pa, i;</span><br><span class="line">  uint flags;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">for</span>(i = <span class="number">0</span>; i &lt; sz; i += PGSIZE)&#123;</span><br><span class="line">    <span class="keyword">if</span>((pte = walk(old, i, <span class="number">0</span>)) == <span class="number">0</span>)</span><br><span class="line">      panic(<span class="string">&quot;uvmcopy: pte should exist&quot;</span>);</span><br><span class="line">    <span class="keyword">if</span>((*pte &amp; PTE_V) == <span class="number">0</span>)</span><br><span class="line">      panic(<span class="string">&quot;uvmcopy: page not present&quot;</span>);</span><br><span class="line">    pa = PTE2PA(*pte);</span><br><span class="line">    <span class="comment">// modify father</span></span><br><span class="line">    *pte = (*pte &amp; (~PTE_W)) | PTE_C;</span><br><span class="line">    flags = PTE_FLAGS(*pte);</span><br><span class="line">    <span class="keyword">if</span>(mappages(new, i, PGSIZE, (uint64)pa, flags) != <span class="number">0</span>)&#123;</span><br><span class="line">      <span class="keyword">goto</span> err;</span><br><span class="line">    &#125;</span><br><span class="line">    addref((<span class="type">void</span> *)pa);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line"> err:</span><br><span class="line">  uvmunmap(new, <span class="number">0</span>, i / PGSIZE, <span class="number">1</span>);</span><br><span class="line">  <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="type">int</span></span><br><span class="line"><span class="title function_">copyout</span><span class="params">(<span class="type">pagetable_t</span> pagetable, uint64 dstva, <span class="type">char</span> *src, uint64 len)</span></span><br><span class="line">&#123;</span><br><span class="line">  uint64 n, va0, pa0;</span><br><span class="line">  <span class="type">pte_t</span> *pte;</span><br><span class="line">  <span class="keyword">while</span>(len &gt; <span class="number">0</span>)&#123;</span><br><span class="line">    va0 = PGROUNDDOWN(dstva);</span><br><span class="line">    <span class="keyword">if</span>(va0 &gt;= MAXVA) </span><br><span class="line">      <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">    pte = walk(pagetable, va0, <span class="number">0</span>);</span><br><span class="line">    <span class="keyword">if</span>(pte &amp;&amp; (*pte &amp; PTE_C)) &#123;</span><br><span class="line">      <span class="type">char</span> *mem;</span><br><span class="line">      <span class="keyword">if</span>((mem = kalloc()) == <span class="number">0</span>) &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;copyout: kalloc failed\n&quot;</span>);</span><br><span class="line">        <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">      &#125;</span><br><span class="line">      uint64 pa = walkaddr(pagetable, va0);</span><br><span class="line">      <span class="keyword">if</span>(pa) &#123;</span><br><span class="line">        memmove(mem, (<span class="type">char</span>*)pa, PGSIZE);</span><br><span class="line">        <span class="type">int</span> flags = PTE_FLAGS(*pte);</span><br><span class="line">        <span class="comment">// write and not COW</span></span><br><span class="line">        flags = (flags | PTE_W) &amp; (~PTE_C);</span><br><span class="line">        <span class="keyword">if</span>(mappages(pagetable, va0, PGSIZE, (uint64)mem, flags) != <span class="number">0</span>)&#123;</span><br><span class="line">          <span class="built_in">printf</span>(<span class="string">&quot;copyout: COW can&#x27;t map new page&quot;</span>);</span><br><span class="line">          kfree(mem);</span><br><span class="line">          <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        kfree((<span class="type">void</span>*)pa);</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    pa0 = walkaddr(pagetable, va0);</span><br><span class="line">    <span class="keyword">if</span>(pa0 == <span class="number">0</span>)</span><br><span class="line">      <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">    n = PGSIZE - (dstva - va0);</span><br><span class="line">    <span class="keyword">if</span>(n &gt; len)</span><br><span class="line">      n = len;</span><br><span class="line">    memmove((<span class="type">void</span> *)(pa0 + (dstva - va0)), src, n);</span><br><span class="line"></span><br><span class="line">    len -= n;</span><br><span class="line">    src += n;</span><br><span class="line">    dstva = va0 + PGSIZE;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="测试">测试</h1>
+<p>记得加一个<code>time.txt</code>的文件记录时间。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo python3 grade-lab-cow</span><br></pre></td></tr></table></figure>
+<img data-src="/blog/posts/3f0e8b2b/image-20230416193117738.png" class="" title="image-20230416193117738">
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer"><div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px; padding-top: 10px;">--------------------------------------- <i class="fa fa-heart"></i> The End <i class="fa fa-heart"></i> ---------------------------------------  </div>
+    
+</div>
+
+          <div class="reward-container">
+  <div>如果文章对你不错，可以给博主加个鸡腿，感谢鼓励！</div>
+  <button>
+    赞赏
+  </button>
+  <div class="post-reward">
+      <div>
+        <img src="/images/wechatpay.png" alt="default111 微信">
+        <span>微信</span>
+      </div>
+
+  </div>
+</div>
+
+          
+
+<div class="post-copyright">
+<ul>
+  <li class="post-copyright-author">
+      <strong>本文作者： </strong>default111
+  </li>
+  <li class="post-copyright-link">
+      <strong>本文链接：</strong>
+      <a href="https://lyroch.site/posts/3f0e8b2b/" title="【MIT 6.S081】Lab5: Copy on-write">https://lyroch.site/posts/3f0e8b2b/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/OS/" rel="tag"><i class="fa fa-tag"></i> OS</a>
+              <a href="/tags/MIT-6-S081/" rel="tag"><i class="fa fa-tag"></i> MIT 6.S081</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/posts/c5231a06/" rel="prev" title="【MIT 6.S081】Lab4: Traps">
+                  <i class="fa fa-chevron-left"></i> 【MIT 6.S081】Lab4: Traps
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/posts/e527845/" rel="next" title="【数学】摩尔投票">
+                  【数学】摩尔投票 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="beian"><a href="https://beian.miit.gov.cn/" rel="noopener" target="_blank">皖ICP备2022014370号-1 </a>
+      <img src="/images/beian.png" alt=""><a href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=2022014370" rel="noopener" target="_blank">皖公网安备34011102003323号 </a>
+  </div>
+
+<div class="copyright">
+  &copy; 2022 – 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-star"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">default111</span>
+</div>
+<div class="wordcount">
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-line"></i>
+    </span>
+      <span>站点总字数：</span>
+    <span title="站点总字数">274k</span>
+  </span>
+</div>
+<div class="busuanzi-count">
+</div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://lib.baomitu.com/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+  <script src="https://lib.baomitu.com/lozad.js/1.16.0/lozad.min.js" integrity="sha256-mOFREFhqmHeQbXpK2lp4nA3qooVgACfh88fpJftLBbc=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  
+<script src="https://lib.baomitu.com/hexo-generator-searchdb/1.4.0/search.js" integrity="sha256-vXZMYLEqsROAXkEw93GGIvaB2ab+QW6w3+1ahD9nXXA=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+  <script class="next-config" data-name="mermaid" type="application/json">{"enable":true,"theme":{"light":"default","dark":"dark"},"js":{"url":"https://lib.baomitu.com/mermaid/8.14.0/mermaid.min.js","integrity":"sha256-7wT34TI0pEBeEFoi4z+vhuSddGh6vUTMWdqJ2SDe2jg="}}</script>
+  <script src="/js/third-party/tags/mermaid.js"></script>
+
+
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">false</script><link rel="stylesheet" href="https://lib.baomitu.com/KaTeX/0.15.3/katex.min.css" integrity="sha256-TThEtR+XalhWKkfF383YLOrI50NGNeIqrzS+q08afrY=" crossorigin="anonymous">
+
+
+
+</body>
+</html>
+<script type="text/javascript" src="/js/clicklove.js"></script>

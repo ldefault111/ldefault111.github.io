@@ -151,18 +151,18 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">93</span>
+          <span class="site-state-item-count">94</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
           <a href="/categories/">
-        <span class="site-state-item-count">18</span>
+        <span class="site-state-item-count">17</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">52</span>
+        <span class="site-state-item-count">51</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -313,9 +313,9 @@
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">eval</span> <span class="string">&quot;<span class="subst">$(ssh-agent -s)</span>&quot;</span></span><br><span class="line">ssh-add ~/.ssh/id_rsa</span><br><span class="line"><span class="built_in">cat</span> ~/.ssh/id_rsa.pub</span><br></pre></td></tr></table></figure>
 <p>（Windows系统）在<code>C:\user\xxx\.ssh\</code>中找到<code>id_rsa.pub</code>，打开文件：</p>
 <p>将文件中的内容复制下来，在Github个人信息的Settings里面：</p>
-<img data-src="/posts/39b0b687/image-20221116234821085.png" class="" title="image-20221116234821085">
+<img data-src="/blog/posts/39b0b687/image-20221116234821085.png" class="" title="image-20221116234821085">
 <p>添加到SSH里就可以了：</p>
-<img data-src="/posts/39b0b687/image-20221116234847595.png" class="" title="image-20221116234847595">
+<img data-src="/blog/posts/39b0b687/image-20221116234847595.png" class="" title="image-20221116234847595">
 <h1 id="创建项目并连接">创建项目并连接</h1>
 <p>在<a target="_blank" rel="noopener" href="https://github.com/">Github</a>上创建新项目，复制下它的SSH连接（项目主页Code下拉里的），<code>git@github.com:xxx.git</code>，在你自己本地项目的文件夹里打开命令行（Windows下右键Git Bash）：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git init</span><br><span class="line">git remote add origin git@github.com:xxx.git</span><br></pre></td></tr></table></figure>
@@ -331,7 +331,7 @@
 <h1 id="增加项目协作者">增加项目协作者</h1>
 <p>度娘说，一种方式是用fork+pull request，另一种是加协作者，前者看着有些复杂，这里说后者。</p>
 <p>在项目的settings-collaborators中添加用户，对方同意邀请。</p>
-<img data-src="/posts/39b0b687/image-20221116235503016.png" class="" title="image-20221116235503016">
+<img data-src="/blog/posts/39b0b687/image-20221116235503016.png" class="" title="image-20221116235503016">
 <p>协作者在配置Git用户信息后，（可选配置密钥通过ssh连接项目），就可以使用常用命令了！</p>
 
     </div>
@@ -429,7 +429,7 @@
       <i class="fa fa-chart-line"></i>
     </span>
       <span>站点总字数：</span>
-    <span title="站点总字数">251k</span>
+    <span title="站点总字数">274k</span>
   </span>
 </div>
 <div class="busuanzi-count">

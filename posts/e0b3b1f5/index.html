@@ -151,18 +151,18 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">93</span>
+          <span class="site-state-item-count">94</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
           <a href="/categories/">
-        <span class="site-state-item-count">18</span>
+        <span class="site-state-item-count">17</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">52</span>
+        <span class="site-state-item-count">51</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -317,7 +317,7 @@
 <h2 id="测试">测试</h2>
 <p>输入下面的命令，注意不是官网上的<code>./grade-lab-util sleep</code>：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo python3 grade-lab-util <span class="built_in">sleep</span></span><br></pre></td></tr></table></figure>
-<img data-src="/posts/e0b3b1f5/sleep.jpg" class="" title="sleep">
+<img data-src="/blog/posts/e0b3b1f5/sleep.jpg" class="" title="sleep">
 <h1 id="pingpong-easy">pingpong (easy)</h1>
 <h2 id="要求">要求</h2>
 <p>使用系统调用实现两个进程使用管道通信，父进程向子进程发送信息，等待子进程结束，从管道读取子进程发的信息，打印<code>进程id: received pong</code>，结束进程；子进程打印<code>进程id: received ping</code> ，将信息发给父进程，结束子进程。程序放在<code>user/pingpong.c</code></p>
@@ -334,13 +334,13 @@
 <p>输入命令：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo python3 grade-lab-util pingpong</span><br></pre></td></tr></table></figure>
 <p>上面是简略版代码的测试结果，下面是完整版代码的测试结果，均通过：</p>
-<img data-src="/posts/e0b3b1f5/pingpong.jpg" class="" title="pingpong">
+<img data-src="/blog/posts/e0b3b1f5/pingpong.jpg" class="" title="pingpong">
 <h1 id="primes-moderate-hard">primes (moderate/hard)</h1>
 <h2 id="要求">要求</h2>
 <p>利用<code>pipe</code>和<code>fork</code>完成埃式筛素数，输出2-35的所有素数，程序放在<code>user/primes.c</code></p>
 <h2 id="分析">分析</h2>
 <p>给出了思路提示：</p>
-<img data-src="/posts/e0b3b1f5/primehint.jpg" class="" title="primehint">
+<img data-src="/blog/posts/e0b3b1f5/primehint.jpg" class="" title="primehint">
 <ul>
 <li>
 <p>图片的意思是每个进程取出当前最小的素数输出，并利用埃式筛的原理去除该素数的倍数，将剩余的数传给下一个进程，直到 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>35</mn></mrow><annotation encoding="application/x-tex">35</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">3</span><span class="mord">5</span></span></span></span></p>
@@ -369,10 +369,10 @@
 <h2 id="测试">测试</h2>
 <p>输入命令：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo python3 grade-lab-util primes</span><br></pre></td></tr></table></figure>
-<img data-src="/posts/e0b3b1f5/prime.jpg" class="" title="prime">
+<img data-src="/blog/posts/e0b3b1f5/prime.jpg" class="" title="prime">
 <p>输入命令：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">make qemu</span><br></pre></td></tr></table></figure>
-<img data-src="/posts/e0b3b1f5/prime1.jpg" class="" title="prime1">
+<img data-src="/blog/posts/e0b3b1f5/prime1.jpg" class="" title="prime1">
 <h1 id="find-moderate">find (moderate)</h1>
 <h2 id="要求">要求</h2>
 <p>写一个模仿UNIX中<code>find</code>指令的简单程序，指令给出特定查找目录，和特定查找文件名，输出目录树中所有匹配的文件，程序放在<code>user/find.c</code></p>
@@ -435,7 +435,7 @@
 <h2 id="测试">测试</h2>
 <p>输入命令：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo python3 grade-lab-util find</span><br></pre></td></tr></table></figure>
-<img data-src="/posts/e0b3b1f5/find.jpg" class="" title="find">
+<img data-src="/blog/posts/e0b3b1f5/find.jpg" class="" title="find">
 <h1 id="xargs-moderate">xargs (moderate)</h1>
 <h2 id="要求">要求</h2>
 <p>写一个模仿UNIX中<code>xargs</code>指令的简单程序，从标准输入读取行并为每一行运行一个命令，将该行作为参数提供给命令，程序放在<code>user/xargs.c</code></p>
@@ -462,7 +462,7 @@
 <p>在系统里输入命令：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sh &lt; xargstest.sh</span><br></pre></td></tr></table></figure>
 <p>以下是文档给的样例和测试的两个结果截图：</p>
-<img data-src="/posts/e0b3b1f5/xargs.jpg" class="" title="xargs">
+<img data-src="/blog/posts/e0b3b1f5/xargs.jpg" class="" title="xargs">
 
     </div>
 
@@ -559,7 +559,7 @@
       <i class="fa fa-chart-line"></i>
     </span>
       <span>站点总字数：</span>
-    <span title="站点总字数">251k</span>
+    <span title="站点总字数">274k</span>
   </span>
 </div>
 <div class="busuanzi-count">
