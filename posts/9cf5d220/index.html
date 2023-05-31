@@ -303,35 +303,35 @@
 <span id="more"></span>
 <h1 id="安装插件">安装插件</h1>
 <p>在VSCode侧边栏扩展(Ctrl+Shift+X)搜搜索并下载安装Remote-SSH插件：</p>
-<img data-src="/blog/posts/9cf5d220/image-20221008152232639.png" class="" title="image-20221008152232639">
+<img data-src="/posts/9cf5d220/image-20221008152232639.png" class="" title="image-20221008152232639">
 <h1 id="添加连接">添加连接</h1>
 <p>在侧边栏远程资源管理器选择SSH Targets，点击+号添加新的连接（随意命名，我命名为aliyun）</p>
-<img data-src="/blog/posts/9cf5d220/image-20221008152711231.png" class="" title="image-20221008152711231">
+<img data-src="/posts/9cf5d220/image-20221008152711231.png" class="" title="image-20221008152711231">
 <p>在阿里云控制台找到ECS的公网IP，复制后，点击下图中前两个任意一个都可以，进行配置：</p>
-<img data-src="/blog/posts/9cf5d220/image-20221008152937610.png" class="" title="image-20221008152937610">
+<img data-src="/posts/9cf5d220/image-20221008152937610.png" class="" title="image-20221008152937610">
 <p>在HostName后粘贴公网IP</p>
-<img data-src="/blog/posts/9cf5d220/image-20221008153048601.png" class="" title="image-20221008153048601">
+<img data-src="/posts/9cf5d220/image-20221008153048601.png" class="" title="image-20221008153048601">
 <h1 id="安全组设置">安全组设置</h1>
 <p>在阿里云控制台-网络与安全-安全组</p>
-<img data-src="/blog/posts/9cf5d220/image-20221008153514244.png" class="" title="image-20221008153514244">
+<img data-src="/posts/9cf5d220/image-20221008153514244.png" class="" title="image-20221008153514244">
 <p>选择最右侧操作一栏中的配置规则</p>
-<img data-src="/blog/posts/9cf5d220/image-20221008153602716.png" class="" title="image-20221008153602716">
+<img data-src="/posts/9cf5d220/image-20221008153602716.png" class="" title="image-20221008153602716">
 <p>点击快速添加</p>
-<img data-src="/blog/posts/9cf5d220/image-20221008153629828.png" class="" title="image-20221008153629828">
+<img data-src="/posts/9cf5d220/image-20221008153629828.png" class="" title="image-20221008153629828">
 <p>勾选SSH并确认</p>
-<img data-src="/blog/posts/9cf5d220/image-20221008153654861.png" class="" title="image-20221008153654861">
+<img data-src="/posts/9cf5d220/image-20221008153654861.png" class="" title="image-20221008153654861">
 <p>应该就可以连接成功了，除非你的密码不记得了，可以去阿里云控制台重置密码</p>
 <h1 id="更换操作系统连接注意">更换操作系统连接注意</h1>
 <p>如果重新远程连接，ip地址没换会出现连接错误，是因为RemoteSSH连接ip会记录公钥，在<code>C:/Users/xxx/.ssh/known_hosts</code>里，需要手动将里面你服务器ip对应的内容删掉，就可以重新连接了</p>
 <h1 id="可选-安装sftp插件">（可选）安装SFTP插件</h1>
 <p>SFTP插件用于本机和服务器之间互传文件，本质是本机和服务器共享一个文件夹。在本机安装vscode插件：</p>
-<img data-src="/blog/posts/9cf5d220/image-20221013213309283.png" class="" title="image-20221013213309283">
+<img data-src="/posts/9cf5d220/image-20221013213309283.png" class="" title="image-20221013213309283">
 <p>vscode打开需要同步的本地文件夹，输入<code>Ctrl+Shift+P</code>，输入sftp，并点击：</p>
-<img data-src="/blog/posts/9cf5d220/image-20221013235451092.png" class="" title="image-20221013235451092">
+<img data-src="/posts/9cf5d220/image-20221013235451092.png" class="" title="image-20221013235451092">
 <p>打开了一个json文件，配置示例如下：</p>
 <figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;name&quot;</span><span class="punctuation">:</span> <span class="string">&quot;随便起&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;host&quot;</span><span class="punctuation">:</span> <span class="string">&quot;公网ip&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;protocol&quot;</span><span class="punctuation">:</span> <span class="string">&quot;sftp&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;port&quot;</span><span class="punctuation">:</span> <span class="number">22</span><span class="punctuation">,</span>	</span><br><span class="line">    <span class="attr">&quot;username&quot;</span><span class="punctuation">:</span> <span class="string">&quot;登录名，比如root&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;password&quot;</span><span class="punctuation">:</span> <span class="string">&quot;登录的密码&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;privateKeyPath&quot;</span><span class="punctuation">:</span> <span class="string">&quot;这一步好多教程都缺了，这里输入的是私钥的地址，一般是C:/Users/xxx/.ssh/id_rsa&quot;</span><span class="punctuation">,</span> </span><br><span class="line">    <span class="attr">&quot;remotePath&quot;</span><span class="punctuation">:</span> <span class="string">&quot;服务器中的路径，比如/root/ssl&quot;</span><span class="punctuation">,</span> </span><br><span class="line">    <span class="attr">&quot;uploadOnSave&quot;</span><span class="punctuation">:</span> <span class="literal"><span class="keyword">false</span></span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;watcher&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">        <span class="attr">&quot;files&quot;</span><span class="punctuation">:</span> <span class="string">&quot;*&quot;</span><span class="punctuation">,</span></span><br><span class="line">        <span class="attr">&quot;autoUpload&quot;</span><span class="punctuation">:</span> <span class="literal"><span class="keyword">false</span></span><span class="punctuation">,</span></span><br><span class="line">        <span class="attr">&quot;autoDelete&quot;</span><span class="punctuation">:</span> <span class="literal"><span class="keyword">false</span></span></span><br><span class="line">    <span class="punctuation">&#125;</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
 <p>在工作区右键就可以上传下载同步文件了：</p>
-<img data-src="/blog/posts/9cf5d220/image-20221013235727299.png" class="" title="image-20221013235727299">
+<img data-src="/posts/9cf5d220/image-20221013235727299.png" class="" title="image-20221013235727299">
 <h1 id="可选-服务器安装tmux">（可选）服务器安装tmux</h1>
 <p>为了能在断开远程连接时服务器仍能自己跑程序，需要一个tmux（Terminal MultipleXer），意思是“终端复用器“</p>
 <h2 id="安装">安装</h2>
@@ -341,14 +341,14 @@
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tmux new -s 名称</span><br></pre></td></tr></table></figure>
 <p>之后会出现一个和普通linux命令行基本一样的窗口</p>
 <p>可以在这个窗口继续创建新窗口，快捷键<code>Ctrl+b</code>+<code>c</code>，可在最底下看到序号0，或者其他数字：</p>
-<img data-src="/blog/posts/9cf5d220/image-20230113210040085.png" class="" title="image-20230113210040085">
+<img data-src="/posts/9cf5d220/image-20230113210040085.png" class="" title="image-20230113210040085">
 <p>在对话中切换的快捷键是<code>Ctrl+b</code>+<code>数字</code></p>
 <h2 id="退出窗口保持运行">退出窗口保持运行</h2>
 <p>快捷键：<code>Ctrl+b</code>+<code>d</code>，原命令行显示detached就可以放心断开远程连接了：</p>
-<img data-src="/blog/posts/9cf5d220/image-20230113210143983.png" class="" title="image-20230113210143983">
+<img data-src="/posts/9cf5d220/image-20230113210143983.png" class="" title="image-20230113210143983">
 <h2 id="查看现存所有窗口">查看现存所有窗口</h2>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tmux <span class="built_in">ls</span></span><br></pre></td></tr></table></figure>
-<img data-src="/blog/posts/9cf5d220/image-20230113210231333.png" class="" title="image-20230113210231333">
+<img data-src="/posts/9cf5d220/image-20230113210231333.png" class="" title="image-20230113210231333">
 <h2 id="进入指定窗口">进入指定窗口</h2>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tmux a -t 对话名称</span><br></pre></td></tr></table></figure>
 <h2 id="杀死窗口">杀死窗口</h2>

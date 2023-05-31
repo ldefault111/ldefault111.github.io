@@ -351,7 +351,7 @@
 <h2 id="测试">测试</h2>
 <p>输入命令：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo python3 grade-lab-pgtbl ugetpid</span><br></pre></td></tr></table></figure>
-<img data-src="/blog/posts/16f06914/getpid.jpg" class="" title="getpid">
+<img data-src="/posts/16f06914/getpid.jpg" class="" title="getpid">
 <h1 id="print-a-page-table-easy">Print a page table (easy)</h1>
 <h2 id="要求">要求</h2>
 <p>写一个函数打印页表内容，参数是一个<code>pagetable_t</code>，在<code>exec.c</code>的<code>return argc</code>前添加代码<code>if(p-&gt;pid==1) vmprint(p-&gt;pagetable)</code>，打印格式：第一行<code>page table 参数</code>，之后每行一个PTE，以<code>..</code>表示树中的深度”，后面依次打印PTE 索引、PTE 位和 PTE 中提取的物理地址</p>
@@ -377,7 +377,7 @@
 <h2 id="测试">测试</h2>
 <p>输入命令：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo python3 grade-lab-pgtbl pte printout</span><br></pre></td></tr></table></figure>
-<img data-src="/blog/posts/16f06914/pte.jpg" class="" title="pte">
+<img data-src="/posts/16f06914/pte.jpg" class="" title="pte">
 <h1 id="detecting-which-pages-have-been-accessed-hard">Detecting which pages have been accessed (hard)</h1>
 <h2 id="要求">要求</h2>
 <p>实现<code>pgaccess()</code>的系统调用，报告哪些页面已被访问。检查 RISC-V 页表中的访问位来检测并向用户空间报告此信息，RISC-V 硬件page walker在解决一个 TLB 未命中时会在 PTE 中标记这些位。这个系统调用有三个参数，第一个参数是第一个用户页的虚拟地址，第二个参数是页数，第三个参数是一个指针传递结果（第一页对应LSB，后面依次）</p>
@@ -403,7 +403,7 @@
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// check PTE_A</span></span><br><span class="line">uint64</span><br><span class="line"><span class="title function_">check_pgaccess</span><span class="params">(<span class="type">pagetable_t</span> pagetable, uint64 va, <span class="type">int</span> npages)</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> (va &gt;= MAXVA)</span><br><span class="line">        panic(<span class="string">&quot;walk&quot;</span>);</span><br><span class="line">    uint64 res = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; npages; i++) &#123; <span class="comment">// check each page</span></span><br><span class="line">        <span class="type">pte_t</span>* pte = walk(pagetable, va + i * PGSIZE, <span class="number">0</span>);</span><br><span class="line">        <span class="keyword">if</span> (pte &amp;&amp; (*pte &amp; PTE_A)) &#123; <span class="comment">// access</span></span><br><span class="line">            res |= (<span class="number">1L</span> &lt;&lt; i);</span><br><span class="line">            *pte &amp;= ~PTE_A; <span class="comment">// 111...0111... reset *pte</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> res;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h2 id="测试">测试</h2>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo python3 grade-lab-pgtbl pgtbltest</span><br></pre></td></tr></table></figure>
-<img data-src="/blog/posts/16f06914/pgtbl.jpg" class="" title="pgtbl">
+<img data-src="/posts/16f06914/pgtbl.jpg" class="" title="pgtbl">
 
     </div>
 
