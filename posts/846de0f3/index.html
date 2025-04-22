@@ -255,7 +255,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-07-30 22:24:16" itemprop="dateModified" datetime="2022-07-30T22:24:16+08:00">2022-07-30</time>
+      <time title="修改时间：2024-12-15 15:56:59" itemprop="dateModified" datetime="2024-12-15T15:56:59+08:00">2024-12-15</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -311,7 +311,7 @@
 <li>思想：区间的状态由子区间更新而来</li>
 <li>题目技巧1：断环成链：首尾相连得到 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>2</mn></mrow><annotation encoding="application/x-tex">2</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">2</span></span></span></span> 倍环，转化为区间。注意区间要更新到 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi><mo>+</mo><mn>1</mn><mo>∼</mo><mn>2</mn><mi>n</mi></mrow><annotation encoding="application/x-tex">n+1\sim 2n</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.66666em;vertical-align:-0.08333em;"></span><span class="mord mathdefault">n</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">∼</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">2</span><span class="mord mathdefault">n</span></span></span></span> 的段。</li>
 </ul>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="type">int</span> len = <span class="number">1</span>; len &lt; n; len++) <span class="comment">// 区间长度，由小区间开始dp，因为最先能确定的一定是最小的区间</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> l = <span class="number">1</span>, r = len + <span class="number">1</span>; l &lt;= n &amp;&amp; r &lt;= n; l++, r++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="type">int</span> ans = INF; <span class="comment">// int ans=0; 取决于要求的是最大值还是最小值</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> k = l; k &lt; r; k++)</span><br><span class="line">            ans = <span class="built_in">max</span>(ans, dp[l][k] + dp[k + <span class="number">1</span>][r] + 对这俩区间操作得到的结果);</span><br><span class="line">        dp[l][r] = ans;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="type">int</span> len = <span class="number">1</span>; len &lt; n; len++) <span class="comment">// 区间长度，由小区间开始dp，因为最先能确定的一定是最小的区间</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> l = <span class="number">1</span>, r = l + len; l &lt;= n &amp;&amp; r &lt;= n; l++, r++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="type">int</span> ans = INF; <span class="comment">// int ans=0; 取决于要求的是最大值还是最小值</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> k = l; k &lt; r; k++)</span><br><span class="line">            ans = <span class="built_in">max</span>(ans, dp[l][k] + dp[k + <span class="number">1</span>][r] + 对这俩区间操作得到的结果);</span><br><span class="line">        dp[l][r] = ans;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
 <h1 id="题目">题目</h1>
 
     </div>
@@ -394,7 +394,7 @@
 
 <div class="copyright">
   &copy; 2022 – 
-  <span itemprop="copyrightYear">2024</span>
+  <span itemprop="copyrightYear">2025</span>
   <span class="with-love">
     <i class="fa fa-star"></i>
   </span>
@@ -406,7 +406,7 @@
       <i class="fa fa-chart-line"></i>
     </span>
       <span>站点总字数：</span>
-    <span title="站点总字数">275k</span>
+    <span title="站点总字数">276k</span>
   </span>
 </div>
 <div class="busuanzi-count">
