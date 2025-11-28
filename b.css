@@ -133,3 +133,50 @@ box-shadow: inset 0 -1px 0 	#696969;
 h1, p {
 	margin: 0;
 }
+
+/* --- 时间转换器 (跳转去年) --- */
+.time-turner {
+	position: fixed; /* 保持固定定位 */
+	bottom: 30px;
+	right: 30px;
+	width: 50px;
+	height: 50px;
+	z-index: 9999; /* 提高层级，防止被背景图遮挡 */
+	cursor: pointer;
+	opacity: 0.8; /* 👈 关键修改：直接设为可见 */
+	transition: opacity 0.3s, transform 0.3s; /* 移除冗余的延迟 */
+}
+
+
+.time-turner:hover {
+	transform: rotate(180deg) scale(1.1);
+	opacity: 1;
+}
+
+/* 简单的 SVG 图标样式 */
+.time-turner svg {
+	fill: #c5a059; /* 金色 */
+	filter: drop-shadow(0 2px 3px rgba(0,0,0,0.5));
+}
+
+/* 提示文字 */
+.tooltip {
+	position: fixed; /* 👈 关键修改：必须改为 fixed，才能相对于屏幕固定 */
+	bottom: 90px; /* 调整位置，避开 time-turner */
+	right: 30px;
+	background: rgba(0,0,0,0.7);
+	color: #fff;
+	padding: 5px 10px;
+	border-radius: 4px;
+	font-size: 12px;
+	white-space: nowrap;
+	opacity: 0;
+	transition: opacity 0.3s;
+	pointer-events: none;
+	z-index: 10000; /* 确保在最顶层 */
+}
+
+/* 提示文字的显示逻辑不变 */
+.time-turner:hover + .tooltip {
+	opacity: 1;
+}

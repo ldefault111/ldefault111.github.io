@@ -1,0 +1,254 @@
+body {
+	margin: 0;
+	padding: 0;
+	height: 100vh;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	/* 这里换成你喜欢的哈利波特背景图 URL */
+	background: #2c3e50 url('https://images.unsplash.com/photo-1618519764620-7403abdbdfe9?q=80&w=1920&auto=format&fit=crop') no-repeat center center/cover;
+	background-blend-mode: multiply; /* 让背景暗一点，突出信件 */
+	font-family: 'Times New Roman', serif;
+	overflow: hidden;
+}
+
+/* --- 容器 --- */
+.container {
+	position: relative;
+	width: 100%;
+	height: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+/* --- 1. 信封部分 (改为图片模式) --- */
+.envelope-wrapper {
+	position: absolute;
+	width: auto;
+	height: auto;
+	cursor: pointer;
+	transition: all 0.8s ease;
+	z-index: 10;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+/* 信封图片样式 */
+.envelope-img {
+	/* 在这里调整信封大小 */
+	width: 600px; 
+	max-width: 90vw; /* 手机端自适应 */
+	height: auto;
+	filter: drop-shadow(0 10px 20px rgba(0,0,0,0.6));
+	transition: transform 0.3s;
+}
+
+.envelope-wrapper:hover .envelope-img {
+	transform: scale(1.02); /* 悬停轻微放大 */
+}
+
+/* 打开状态：信封向下沉并消失 */
+body.open .envelope-wrapper {
+	transform: translateY(150%) scale(0.8);
+	opacity: 0;
+	pointer-events: none;
+}
+
+/* 火漆印 (依然保留 CSS 画的，放在图片中心作为点击引导) */
+/* 如果你的图片自带火漆印，可以把这段 display 改为 none */
+.seal {
+	position: absolute;
+	width: 60px;
+	height: 60px;
+	background: #8e1818;
+	border-radius: 50%;
+	border: 3px dashed #b53030;
+	box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+	display: none;
+	align-items: center;
+	justify-content: center;
+	color: #dabb92;
+	font-size: 24px;
+	font-weight: bold;
+	z-index: 11;
+}
+.seal::after { content: "H"; }
+
+/* --- 2. 信纸部分 (修复版：盒中盒结构) --- */
+
+/* 外层：羊皮卷背景 (不动) */
+.letter-bg {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0.5); /* 初始缩小 */
+    opacity: 0;
+    
+    /* 尺寸和背景 */
+    width: 65vh; 
+    height: 85vh; 
+    max-width: 90vw;
+    
+    background-image: url('./2.png'); 
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 100% 100%; /* 强制拉伸填满 */
+    background-color: transparent;
+    
+    box-shadow: 0 0 50px rgba(0,0,0,0.5);
+    z-index: 5;
+    transition: all 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
+    pointer-events: none;
+    
+    /* 注意：外层不要 overflow: auto，也不要 padding */
+}
+
+/* 展开状态 */
+body.open .letter-bg {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 1;
+    pointer-events: auto;
+    transition-delay: 0.3s;
+}
+
+/* 内层：文字内容 (负责滚动) */
+.letter-content {
+    position: absolute;
+    /* 关键：用 top/bottom 强行把文字框限制在卷轴中间 */
+    /* 请根据你的图片调整这几个数值 */
+    top: 120px;    /* 避开上卷轴 */
+    bottom: 120px; /* 避开下卷轴 */
+    left: 60px;    /* 避开左边缘 */
+    right: 60px;   /* 避开右边缘 */
+    
+    overflow-y: auto; /* 滚动条加在这里 */
+    
+    /* 文字样式 */
+    color: #000000;
+    font-size: 0.9rem;
+    line-height: 1.7;
+    font-family: 'Indie Flower', serif;
+}
+
+/* 隐藏滚动条样式 */
+.letter-content::-webkit-scrollbar { width: 4px; }
+.letter-content::-webkit-scrollbar-thumb { background: rgba(44, 26, 11, 0.2); border-radius: 2px; }
+
+/* 手机适配 */
+@media (max-width: 768px) {
+    .letter-bg { width: 95vw; height: 80vh; }
+    .letter-content {
+        top: 80px; bottom: 80px; left: 30px; right: 30px;
+    }
+}
+
+/* --- 修复后的关闭按钮样式 --- */
+.close-btn {
+    position: fixed; /* 固定在屏幕上，不随信纸滚动 */
+    top: 20px;
+    right: 20px;
+    width: 40px;
+    height: 40px;
+    //background-color: #8e1818; /* 深红底色，更明显 */
+    background-color: transparent;
+    color: #dabb92; /* 金色文字 */
+    border: 2px solid #5a0e0e;
+    border-radius: 50%; /* 圆形 */
+    font-size: 24px;
+    line-height: 1;
+    cursor: pointer;
+    z-index: 1000; /* 保证在最上层 */
+    opacity: 0; /* 初始隐藏 */
+    pointer-events: none; /* 初始不可点 */
+    transition: all 0.3s ease;
+    display: flex; /* 让叉号居中 */
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+}
+
+.close-btn:hover {
+    transform: scale(1.1) rotate(90deg); /* 悬停旋转特效 */
+    background-color: #a31c1c;
+}
+
+/* 当信件打开时，按钮才出现 */
+body.open .close-btn {
+    opacity: 1;
+    pointer-events: auto;
+    transition-delay: 0.8s; /* 等信纸展开完了再出现，体验更好 */
+}
+
+/* 手机适配微调 */
+@media (max-width: 768px) {
+	.letter {
+		width: 90vw; /* 手机上稍微宽一点 */
+		height: 80vh;
+		padding-top: 80px;  /* 手机上卷轴可能看起来小一点，padding稍微减小 */
+		padding-bottom: 80px;
+		padding-left: 30px;
+		padding-right: 30px;
+	}
+}
+
+/* --- 标题样式 --- */
+h1 {
+	text-align: left;
+	font-family: 'Cinzel', serif; /* 如果能引入更好，没有就回退 */
+	border-bottom: 2px solid #3e2723;
+	padding-bottom: 10px;
+	margin-bottom: 30px;
+}
+
+/* --- 时间转换器 (跳转去年) --- */
+.time-turner {
+	position: fixed;
+	bottom: 30px;
+	right: 30px;
+	width: 50px;
+	height: 50px;
+	z-index: 100;
+	cursor: pointer;
+	opacity: 0; /* 初始隐藏 */
+	transition: opacity 1s 1.5s, transform 0.3s; /* 延迟显示 */
+}
+
+body.open .time-turner {
+	opacity: 0.8;
+}
+
+.time-turner:hover {
+	transform: rotate(180deg) scale(1.1);
+	opacity: 1;
+}
+
+/* 简单的 SVG 图标样式 */
+.time-turner svg {
+	fill: #c5a059; /* 金色 */
+	filter: drop-shadow(0 2px 3px rgba(0,0,0,0.5));
+}
+
+/* 提示文字 */
+.tooltip {
+	position: absolute;
+	bottom: 60px;
+	right: 0;
+	background: rgba(0,0,0,0.7);
+	color: #fff;
+	padding: 5px 10px;
+	border-radius: 4px;
+	font-size: 12px;
+	white-space: nowrap;
+	opacity: 0;
+	transition: opacity 0.3s;
+	pointer-events: none;
+}
+.time-turner:hover + .tooltip {
+	opacity: 1;
+}
+.line {
+	padding: 20px;
+box-shadow: inset 0 -1px 0 	#696969;
+}
