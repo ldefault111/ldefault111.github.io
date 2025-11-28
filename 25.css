@@ -6,8 +6,15 @@ body {
 	justify-content: center;
 	align-items: center;
 	/* 这里换成你喜欢的哈利波特背景图 URL */
-	background: #2c3e50 url('https://images.unsplash.com/photo-1618519764620-7403abdbdfe9?q=80&w=1920&auto=format&fit=crop') no-repeat center center/cover;
-	background-blend-mode: multiply; /* 让背景暗一点，突出信件 */
+	background: #2c3e50 url('3.jpg') ;
+	background-size: 100% auto;
+    
+    /* 3. 只允许垂直方向重复 */
+    background-repeat: repeat-y;
+    
+    /* 可选：确保图片从顶部开始排列 */
+    background-position: top center;
+	//background-blend-mode: multiply; /* 让背景暗一点，突出信件 */
 	font-family: 'Times New Roman', serif;
 	overflow: hidden;
 }
